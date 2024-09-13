@@ -8,10 +8,22 @@ body {
     background-color: #f0f0f0;
     border-radius: 8px;
 }
+.container form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: auto;
+}
+label {
+    width: 40%;
+    margin-bottom: 30px;
+}
 input, select {
-    width: 100%;
     padding: 8px;
-    margin: 10px 0;
+}
+select {
+    width: 100%;
 }
 button {
     padding: 10px 20px;
@@ -19,6 +31,8 @@ button {
     color: white;
     border: none;
     cursor: pointer;
+    width: 40%;
+    height: 60px;
 }
 button:hover {
     background-color: #45a049;

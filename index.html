@@ -11,20 +11,30 @@
         <h2>Quantificação de Materiais para Rede LAN</h2>
         <form id="lanForm">
             <!-- template -->
-            <label for="numStations">Número de estações de trabalho:</label>
-            <input type="number" id="numStations" name="numStations" min="1" required>
+            <label for="nPav">Número de pavimentos:
+            <input type="number" id="nPav" name="nPav" min="1" required></label>
 
-            <label for="metersCable">Metros de cabo por estação (em metros):</label>
-            <input type="number" id="metersCable" name="metersCable" min="1" required>
+            <label for="qMaquina">Máquinas por pavimento
+            <input type="number" id="qMaquina" name="qMaquina" min="1" required></label>
 
-            <label for="numSwitches">Número de switches:</label>
-            <input type="number" id="numSwitches" name="numSwitches" min="1" required>
+            <label for="taxa">Taxa de transmissão :
+            <select id="taxa" name="taxa" required>
+                <option value="100MG">100Mgbps</option>
+                <option value="250MG">250Mgbps</option>
+                <option value="500MG">500Mgbps</option>
+                <option value="1G">1Ggbps</option>
+                <option value="10G">10Ggbps</option>
+            </select></label>
 
-            <label for="switchPorts">Portas por switch:</label>
-            <input type="number" id="switchPorts" name="switchPorts" min="1" required>
+            <label for="tipoConector">Conector:
+            <select value="24" id="tipoConector" name="tipoConector" required>
+                <option value="lc">Conector LC</option>
+                <option value="sc">Conector SC</option>
+                <option value="fc">Conector FC</option>
+            </select></label>
 
-            <label for="accessPoints">Número de pontos de acesso:</label>
-            <input type="number" id="accessPoints" name="accessPoints" min="0" required>
+            <label for="accessPoints">Pontos de acesso por pavimento:
+            <input type="number" id="accessPoints" name="accessPoints" min="0" required></label>
 
             <button type="button" onclick="calcularMateriais()">Calcular Materiais</button>
         </form>
