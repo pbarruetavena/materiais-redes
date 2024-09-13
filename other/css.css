@@ -22,6 +22,10 @@ label {
 input, select {
     padding: 8px;
 }
+input {
+    width: 100%;
+    box-sizing: border-box;
+}
 select {
     width: 100%;
 }

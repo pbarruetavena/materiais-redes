@@ -1,41 +1,59 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quantificação de Materiais para Rede LAN</title>
     <link rel="stylesheet" href="other/css.css">
 </head>
+
 <body>
     <div class="container">
         <h2>Quantificação de Materiais para Rede LAN</h2>
         <form id="lanForm">
-            <!-- template -->
             <label for="nPav">Número de pavimentos:
-            <input type="number" id="nPav" name="nPav" min="1" required></label>
+                <input type="number" id="nPav" name="nPav" min="1" required>
+            </label>
 
-            <label for="qMaquina">Máquinas por pavimento
-            <input type="number" id="qMaquina" name="qMaquina" min="1" required></label>
+            <label for="pontosPavimento">Quantidade de pontos de telecom por andar:
+                <input type="number" id="pontosPavimento" name="pontosPavimento" min="1" required>
+            </label>
 
-            <label for="taxa">Taxa de transmissão :
-            <select id="taxa" name="taxa" required>
-                <option value="100MG">100Mgbps</option>
-                <option value="250MG">250Mgbps</option>
-                <option value="500MG">500Mgbps</option>
-                <option value="1G">1Ggbps</option>
-                <option value="10G">10Ggbps</option>
-            </select></label>
+            <label for="qCameras">Cameras de Segurança por andar:
+                <input type="number" id="qCameras" name="qCameras" min="1" required>
+            </label>
+            
+            <label for="qVoip">Voip por andar:
+                <input type="number" id="qVoip" name="qVoip" min="1" required>
+            </label>
+
+            <label for="bandeja">Tamanho bandeja:
+                <input type="number" id="bandeja" name="bandeja" min="1" required>
+            </label>
+
+            <label for="taxa">Taxa de transmissão:
+                <select id="taxa" name="taxa" required>
+                    <option value="100MG">100Mgbps</option>
+                    <option value="250MG">250Mgbps</option>
+                    <option value="500MG">500Mgbps</option>
+                    <option value="1G">1Ggbps</option>
+                    <option value="10G">10Ggbps</option>
+                </select>
+            </label>
 
             <label for="tipoConector">Conector:
-            <select value="24" id="tipoConector" name="tipoConector" required>
-                <option value="lc">Conector LC</option>
-                <option value="sc">Conector SC</option>
-                <option value="fc">Conector FC</option>
-            </select></label>
+                <select value="24" id="tipoConector" name="tipoConector" required>
+                    <option value="lc">Conector LC</option>
+                    <option value="sc">Conector SC</option>
+                    <option value="fc">Conector FC</option>
+                </select>
+            </label>
 
             <label for="accessPoints">Pontos de acesso por pavimento:
-            <input type="number" id="accessPoints" name="accessPoints" min="0" required></label>
-
+                <input type="number" id="accessPoints" name="accessPoints" min="0" required>
+            </label>
+            
             <button type="button" onclick="calcularMateriais()">Calcular Materiais</button>
         </form>
 
@@ -44,4 +62,5 @@
 
     <script src="other/js.js"></script>
 </body>
+
 </html>
