@@ -68,6 +68,13 @@
                     <option value="fc">Conector FC</option>
                 </select>
             </label>
+            <label for="tipoPigtail">Conector:
+                <select value="24" id="tipoPigtail" name="tipoPigtail" required>
+                    <option value="simples">simples</option>
+                    <option value="duplo">duplo</option>
+                </select>
+            </label>
+
 
             <label for="accessPoints">Pontos de acesso por pavimento:
                 <input type="number" id="accessPoints" name="accessPoints" min="0" required>
@@ -84,131 +91,208 @@
         <h2>Resultados Calculados para cada pavimento:</h2>
     
         <!-- Cada bloco mostra o valor de cada item -->
-        <div class="result-group">
-            <label for="qPontos">Pontos:</label>
-            <div id="qPontos" class="result-value"></div>
+        <div class="container-res">
+            <h2>Resultados Calculados para cada pavimento:</h2>
+        
+            <!-- Cada bloco mostra o valor de cada item -->
+            <div class="result-group">
+                <label for="qPontos">Pontos:</label>
+                <div id="qPontos" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="tomadas">Tomadas:</label>
+                <div id="tomadas" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="espelhos">Espelhos:</label>
+                <div id="espelhos" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="patchCordAzul">Patch Cord Azul:</label>
+                <div id="patchCordAzul" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="patchCordVermelho">Patch Cord Vermelho:</label>
+                <div id="patchCordVermelho" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="patchCordBranco">Patch Cord Branco:</label>
+                <div id="patchCordBranco" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="patchPanel">Patch Panel:</label>
+                <div id="patchPanel" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="switchRede">Switch para área de trabalho:</label>
+                <div id="switchRede" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="organizadorCaboFrontal">Organizador Cabo Frontal:</label>
+                <div id="organizadorCaboFrontal" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="tamanhoBandeja">Tamanho Bandeja:</label>
+                <div id="tamanhoBandeja" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="unidadesRack">Unidades por Rack:</label>
+                <div id="unidadesRack" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="nRack">Número de Racks:</label>
+                <div id="nRack" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="qCamera">Câmeras:</label>
+                <div id="qCamera" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="qVoip">VoIPs:</label>
+                <div id="qVoip" class="result-value"></div>
+            </div>
+        
+            <!-- Miscelânia UTP -->
+            <div class="result-group">
+                <label for="etiquetasPortaPatchPanel">Etiquetas Porta Patch Panel:</label>
+                <div id="etiquetasPortaPatchPanel" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="etiquetasPatchCable">Etiquetas Patch Cable:</label>
+                <div id="etiquetasPatchCable" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="etiquetasPatchPanel">Etiquetas Patch Panel:</label>
+                <div id="etiquetasPatchPanel" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="etiquetasTomadasEspelhos">Etiquetas Tomadas Espelhos:</label>
+                <div id="etiquetasTomadasEspelhos" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="etiquetaCaboUTP">Etiqueta Cabo UTP:</label>
+                <div id="etiquetaCaboUTP" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="abracadeiraPlastica">Abraçadeira Plástica:</label>
+                <div id="abracadeiraPlastica" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="reguaOitoTomadas">Régua Oito Tomadas:</label>
+                <div id="reguaOitoTomadas" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="reguaFechamento">Régua de Fechamento:</label>
+                <div id="reguaFechamento" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="porcaGaiola">Porca Gaiola:</label>
+                <div id="porcaGaiola" class="result-value"></div>
+            </div>
+        
+            <!-- Miscelânia Fibra -->
+            <div class="result-group">
+                <label for="etiquetasRack">Etiquetas Rack:</label>
+                <div id="etiquetasRack" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="etiquetasSwitchDio">Etiquetas Switch DIO:</label>
+                <div id="etiquetasSwitchDio" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="abracadeiraVelcro">Abraçadeira de Velcro:</label>
+                <div id="abracadeiraVelcro" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="abracadeiraHellermann">Abraçadeira Hellermann:</label>
+                <div id="abracadeiraHellermann" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="filtroDeLinha">Filtro de Linha:</label>
+                <div id="filtroDeLinha" class="result-value"></div>
+            </div>
+        
+            <!-- Fibra óptica -->
+            <div class="result-group">
+                <label for="paresFibra">Pares de Fibra:</label>
+                <div id="paresFibra" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="switchDio">Switch para DIO:</label>
+                <div id="switchDio" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="dio">DIO:</label>
+                <div id="dio" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="organizadorCaboFrontalFibra">Organizador Cabo Frontal Fibra:</label>
+                <div id="organizadorCaboFrontalFibra" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="acopladores">Acopladores:</label>
+                <div id="acopladores" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="pigtail">Pigtail:</label>
+                <div id="pigtail" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="cordaoOptico">Cordão Óptico:</label>
+                <div id="cordaoOptico" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="terminadorOptico">Terminador Óptico:</label>
+                <div id="terminadorOptico" class="result-value"></div>
+            </div>
+        
+            <!-- Rack -->
+            <div class="result-group">
+                <label for="tamanhoTotal">Tamanho do rack:</label>
+                <div id="tamanhoTotal" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="nRack">Número de Racks:</label>
+                <div id="nRack" class="result-value"></div>
+            </div>
+        
         </div>
-    
-        <div class="result-group">
-            <label for="tomadas">Tomadas:</label>
-            <div id="tomadas" class="result-value"></div>
-        </div>
-    
-        <div class="result-group">
-            <label for="espelhos">Espelhos:</label>
-            <div id="espelhos" class="result-value"></div>
-        </div>
-    
-        <div class="result-group">
-            <label for="patchCordAzul">Patch Cord Azul:</label>
-            <div id="patchCordAzul" class="result-value"></div>
-        </div>
-    
-        <div class="result-group">
-            <label for="patchCordVermelho">Patch Cord Vermelho:</label>
-            <div id="patchCordVermelho" class="result-value"></div>
-        </div>
-    
-        <div class="result-group">
-            <label for="patchCordBranco">Patch Cord Branco:</label>
-            <div id="patchCordBranco" class="result-value"></div>
-        </div>
-    
-        <div class="result-group">
-            <label for="patchPanel">Patch Panel:</label>
-            <div id="patchPanel" class="result-value"></div>
-        </div>
-    
-        <div class="result-group">
-            <label for="switchRede">Switch Rede:</label>
-            <div id="switchRede" class="result-value"></div>
-        </div>
-    
-        <div class="result-group">
-            <label for="organizadorCaboFrontal">Organizador Cabo Frontal:</label>
-            <div id="organizadorCaboFrontal" class="result-value"></div>
-        </div>
-    
-        <div class="result-group">
-            <label for="tamanhoBandeja">Tamanho Bandeja:</label>
-            <div id="tamanhoBandeja" class="result-value"></div>
-        </div>
-
-        <div class="result-group">
-            <label for="unidadesRack">Unidades por Rack:</label>
-            <div id="unidadesRack" class="result-value"></div>
-        </div>
-
-        <div class="result-group">
-            <label for="nRack">Número de racks:</label>
-            <div id="nRack" class="result-value"></div>
-        </div>
-    
-        <!-- Exibir os resultados totais -->
-        <h2>Resultados Totais para Pavimentos:</h2>
-    
-        <div class="result-group">
-            <label for="totalPontos">Total de Pontos:</label>
-            <div id="totalPontos" class="result-value"></div>
-        </div>
-    
-        <div class="result-group">
-            <label for="totalTomadas">Total de Tomadas:</label>
-            <div id="totalTomadas" class="result-value"></div>
-        </div>
-    
-        <div class="result-group">
-            <label for="totalEspelhos">Total de Espelhos:</label>
-            <div id="totalEspelhos" class="result-value"></div>
-        </div>
-    
-        <div class="result-group">
-            <label for="totalPatchCordAzul">Total de Patch Cord Azul:</label>
-            <div id="totalPatchCordAzul" class="result-value"></div>
-        </div>
-    
-        <div class="result-group">
-            <label for="totalPatchCordVermelho">Total de Patch Cord Vermelho:</label>
-            <div id="totalPatchCordVermelho" class="result-value"></div>
-        </div>
-    
-        <div class="result-group">
-            <label for="totalPatchCordBranco">Total de Patch Cord Branco:</label>
-            <div id="totalPatchCordBranco" class="result-value"></div>
-        </div>
-    
-        <div class="result-group">
-            <label for="totalPatchPanel">Total de Patch Panels:</label>
-            <div id="totalPatchPanel" class="result-value"></div>
-        </div>
-    
-        <div class="result-group">
-            <label for="totalSwitchRede">Total de Switches Rede:</label>
-            <div id="totalSwitchRede" class="result-value"></div>
-        </div>
-    
-        <div class="result-group">
-            <label for="totalOrganizadorCaboFrontal">Total de Organizadores de Cabo Frontal:</label>
-            <div id="totalOrganizadorCaboFrontal" class="result-value"></div>
-        </div>
-    
-        <div class="result-group">
-            <label for="totalTamanhoBandeja">Tamanho Total da Bandeja:</label>
-            <div id="totalTamanhoBandeja" class="result-value"></div>
-        </div>
-
-        <div class="result-group">
-            <label for="totalUnidadesRack">Total de unidades por rack:</label>
-            <div id="totalUnidadesRack" class="result-value"></div>
-        </div>
-
-        <div class="result-group">
-            <label for="totalNRack">Número de Racks total</label>
-            <div id="totalNRack" class="result-value"></div>
-        </div>
-    </div>
 
     <script src="other/js.js"></script>
+    <script src="other/result.js"></script>
 </body>
 
 </html>
