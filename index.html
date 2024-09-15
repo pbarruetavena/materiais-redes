@@ -36,6 +36,21 @@
                 <input type="number" id="pfibras" name="pfibras" min="1" required>
             </label>
 
+            <label>Tipo de backbone: <i class="info-icon">ℹ</i>
+                <select id="backbone" name="backbone" required>
+                    <option value="1">Apenas primário</option>
+                    <option value="2">Secundário</option>
+                </select>
+            </label>
+            
+            <div id="tooltip" class="tooltip-box">
+                O backbone refere-se a quantos níveis de backbone são necessário no projeto. Marque apenas primário se apenas um nível de backbone for necessário, como por exemplo, em um prédio, no qual há uma sala de equipamentos e uma sala de telecomunicação por pavimento. Marque Backbone secundário caso houver mais de um prédio, no qual cada prédio tem uma sala de equipamento, cada pavimento uma sala de comunicação e no prédio principal há a sala de equipamentos principal, por onde chega a conexão exterior.
+            </div>
+
+            <label id="predioLabel" for="pPredio" style="display: none;">Prédios (unidades de backbone primário): 
+                <input type="number" id="pPredio" name="pPredio" min="1" required>
+            </label>
+
             <label for="taxa">Taxa de transmissão:
                 <select id="taxa" name="taxa" required>
                     <option value="100MG">100Mgbps</option>
@@ -58,10 +73,139 @@
                 <input type="number" id="accessPoints" name="accessPoints" min="0" required>
             </label>
             
+
             <button type="button" onclick="calcularMateriais()">Calcular Materiais</button>
         </form>
 
         <div class="result" id="result"></div>
+    </div>
+
+    <div class="container-res">
+        <h2>Resultados Calculados para cada pavimento:</h2>
+    
+        <!-- Cada bloco mostra o valor de cada item -->
+        <div class="result-group">
+            <label for="qPontos">Pontos:</label>
+            <div id="qPontos" class="result-value"></div>
+        </div>
+    
+        <div class="result-group">
+            <label for="tomadas">Tomadas:</label>
+            <div id="tomadas" class="result-value"></div>
+        </div>
+    
+        <div class="result-group">
+            <label for="espelhos">Espelhos:</label>
+            <div id="espelhos" class="result-value"></div>
+        </div>
+    
+        <div class="result-group">
+            <label for="patchCordAzul">Patch Cord Azul:</label>
+            <div id="patchCordAzul" class="result-value"></div>
+        </div>
+    
+        <div class="result-group">
+            <label for="patchCordVermelho">Patch Cord Vermelho:</label>
+            <div id="patchCordVermelho" class="result-value"></div>
+        </div>
+    
+        <div class="result-group">
+            <label for="patchCordBranco">Patch Cord Branco:</label>
+            <div id="patchCordBranco" class="result-value"></div>
+        </div>
+    
+        <div class="result-group">
+            <label for="patchPanel">Patch Panel:</label>
+            <div id="patchPanel" class="result-value"></div>
+        </div>
+    
+        <div class="result-group">
+            <label for="switchRede">Switch Rede:</label>
+            <div id="switchRede" class="result-value"></div>
+        </div>
+    
+        <div class="result-group">
+            <label for="organizadorCaboFrontal">Organizador Cabo Frontal:</label>
+            <div id="organizadorCaboFrontal" class="result-value"></div>
+        </div>
+    
+        <div class="result-group">
+            <label for="tamanhoBandeja">Tamanho Bandeja:</label>
+            <div id="tamanhoBandeja" class="result-value"></div>
+        </div>
+
+        <div class="result-group">
+            <label for="unidadesRack">Unidades por Rack:</label>
+            <div id="unidadesRack" class="result-value"></div>
+        </div>
+
+        <div class="result-group">
+            <label for="nRack">Número de racks:</label>
+            <div id="nRack" class="result-value"></div>
+        </div>
+    
+        <!-- Exibir os resultados totais -->
+        <h2>Resultados Totais para Pavimentos:</h2>
+    
+        <div class="result-group">
+            <label for="totalPontos">Total de Pontos:</label>
+            <div id="totalPontos" class="result-value"></div>
+        </div>
+    
+        <div class="result-group">
+            <label for="totalTomadas">Total de Tomadas:</label>
+            <div id="totalTomadas" class="result-value"></div>
+        </div>
+    
+        <div class="result-group">
+            <label for="totalEspelhos">Total de Espelhos:</label>
+            <div id="totalEspelhos" class="result-value"></div>
+        </div>
+    
+        <div class="result-group">
+            <label for="totalPatchCordAzul">Total de Patch Cord Azul:</label>
+            <div id="totalPatchCordAzul" class="result-value"></div>
+        </div>
+    
+        <div class="result-group">
+            <label for="totalPatchCordVermelho">Total de Patch Cord Vermelho:</label>
+            <div id="totalPatchCordVermelho" class="result-value"></div>
+        </div>
+    
+        <div class="result-group">
+            <label for="totalPatchCordBranco">Total de Patch Cord Branco:</label>
+            <div id="totalPatchCordBranco" class="result-value"></div>
+        </div>
+    
+        <div class="result-group">
+            <label for="totalPatchPanel">Total de Patch Panels:</label>
+            <div id="totalPatchPanel" class="result-value"></div>
+        </div>
+    
+        <div class="result-group">
+            <label for="totalSwitchRede">Total de Switches Rede:</label>
+            <div id="totalSwitchRede" class="result-value"></div>
+        </div>
+    
+        <div class="result-group">
+            <label for="totalOrganizadorCaboFrontal">Total de Organizadores de Cabo Frontal:</label>
+            <div id="totalOrganizadorCaboFrontal" class="result-value"></div>
+        </div>
+    
+        <div class="result-group">
+            <label for="totalTamanhoBandeja">Tamanho Total da Bandeja:</label>
+            <div id="totalTamanhoBandeja" class="result-value"></div>
+        </div>
+
+        <div class="result-group">
+            <label for="totalUnidadesRack">Total de unidades por rack:</label>
+            <div id="totalUnidadesRack" class="result-value"></div>
+        </div>
+
+        <div class="result-group">
+            <label for="totalNRack">Número de Racks total</label>
+            <div id="totalNRack" class="result-value"></div>
+        </div>
     </div>
 
     <script src="other/js.js"></script>
