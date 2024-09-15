@@ -47,7 +47,7 @@
                 O backbone refere-se a quantos níveis de backbone são necessário no projeto. Marque apenas primário se apenas um nível de backbone for necessário, como por exemplo, em um prédio, no qual há uma sala de equipamentos e uma sala de telecomunicação por pavimento. Marque Backbone secundário caso houver mais de um prédio, no qual cada prédio tem uma sala de equipamento, cada pavimento uma sala de comunicação e no prédio principal há a sala de equipamentos principal, por onde chega a conexão exterior.
             </div>
 
-            <label id="predioLabel" for="pPredio" style="display: none;">Prédios (unidades de backbone primário): 
+            <label id="predioLabel" for="pPredio" style="display: none;">Prédios (unidades de backbone secundário): 
                 <input type="number" id="pPredio" name="pPredio" min="1" required>
             </label>
 
@@ -61,13 +61,7 @@
                 </select>
             </label>
 
-            <label for="tipoConector">Conector:
-                <select value="24" id="tipoConector" name="tipoConector" required>
-                    <option value="lc">Conector LC</option>
-                    <option value="sc">Conector SC</option>
-                    <option value="fc">Conector FC</option>
-                </select>
-            </label>
+
             <label for="tipoPigtail">Conector:
                 <select value="24" id="tipoPigtail" name="tipoPigtail" required>
                     <option value="simples">simples</option>
@@ -87,208 +81,558 @@
         <div class="result" id="result"></div>
     </div>
 
-    <div class="container-res">
-        <h2>Resultados Calculados para cada pavimento:</h2>
     
-        <!-- Cada bloco mostra o valor de cada item -->
         <div class="container-res">
-            <h2>Resultados Calculados para cada pavimento:</h2>
-        
-            <!-- Cada bloco mostra o valor de cada item -->
-            <div class="result-group">
-                <label for="qPontos">Pontos:</label>
-                <div id="qPontos" class="result-value"></div>
+            <h2>Resultados</h2>
+            <label for="options">Mostrar:</label>
+            <select id="options">
+                <option value="">Selecione uma opção</option>
+                <option value="res-pavimento">Itens por pavimento</option>
+                <option id="opcao-sala-eqp1" value="sala-eqp">Sala de Equipamentos</option>
+                <option id="opcao-predio-principal" value="predio-principal">Sala de equipamentos backbone principal</option>
+                <option value="res-total">Total</option>
+            </select>
+
+            <div id="res-pavimento">
+                <h2>Resultados Calculados para cada pavimento:</h2>
+                <div class="result-group">
+                    <label for="qPontos">Pontos:</label>
+                    <div id="qPontos" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="tomadas">Tomadas:</label>
+                    <div id="tomadas" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="espelhos">Espelhos:</label>
+                    <div id="espelhos" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="patchCordAzul">Patch Cord Azul:</label>
+                    <div id="patchCordAzul" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="patchCordVermelho">Patch Cord Vermelho:</label>
+                    <div id="patchCordVermelho" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="patchCordBranco">Patch Cord Branco:</label>
+                    <div id="patchCordBranco" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="patchPanel">Patch Panel:</label>
+                    <div id="patchPanel" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="switchRede">Switch para área de trabalho:</label>
+                    <div id="switchRede" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="organizadorCaboFrontal">Organizador Cabo Frontal:</label>
+                    <div id="organizadorCaboFrontal" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="tamanhoBandeja">Tamanho Bandeja:</label>
+                    <div id="tamanhoBandeja" class="result-value"></div>
+                </div>
+            
+
+            
+                <div class="result-group">
+                    <label for="qCamera">Câmeras:</label>
+                    <div id="qCamera" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="qVoip">VoIPs:</label>
+                    <div id="qVoip" class="result-value"></div>
+                </div>
+            
+                <!-- Miscelânia UTP -->
+                <div class="result-group">
+                    <label for="etiquetasPortaPatchPanel">Etiquetas Porta Patch Panel:</label>
+                    <div id="etiquetasPortaPatchPanel" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="etiquetasPatchCable">Etiquetas Patch Cable:</label>
+                    <div id="etiquetasPatchCable" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="etiquetasPatchPanel">Etiquetas Patch Panel:</label>
+                    <div id="etiquetasPatchPanel" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="etiquetasTomadasEspelhos">Etiquetas Tomadas Espelhos:</label>
+                    <div id="etiquetasTomadasEspelhos" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="etiquetaCaboUTP">Etiqueta Cabo UTP:</label>
+                    <div id="etiquetaCaboUTP" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="abracadeiraPlastica">Abraçadeira Plástica:</label>
+                    <div id="abracadeiraPlastica" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="reguaOitoTomadas">Régua Oito Tomadas:</label>
+                    <div id="reguaOitoTomadas" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="reguaFechamento">Régua de Fechamento:</label>
+                    <div id="reguaFechamento" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="porcaGaiola">Porca Gaiola:</label>
+                    <div id="porcaGaiola" class="result-value"></div>
+                </div>
+            
+                <!-- Miscelânia Fibra -->
+                <div class="result-group">
+                    <label for="etiquetasRack">Etiquetas Rack:</label>
+                    <div id="etiquetasRack" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="etiquetasSwitchDio">Etiquetas Switch DIO:</label>
+                    <div id="etiquetasSwitchDio" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="abracadeiraVelcro">Abraçadeira de Velcro:</label>
+                    <div id="abracadeiraVelcro" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="abracadeiraHellermann">Abraçadeira Hellermann:</label>
+                    <div id="abracadeiraHellermann" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="filtroDeLinha">Filtro de Linha:</label>
+                    <div id="filtroDeLinha" class="result-value"></div>
+                </div>
+            
+                <!-- Fibra óptica -->
+                <div class="result-group">
+                    <label for="paresFibra">Pares de Fibra:</label>
+                    <div id="paresFibra" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="switchDio">Switch para DIO:</label>
+                    <div id="switchDio" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="dio">DIO:</label>
+                    <div id="dio" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="organizadorCaboFrontalFibra">Organizador Cabo Frontal Fibra:</label>
+                    <div id="organizadorCaboFrontalFibra" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="acopladores">Acopladores:</label>
+                    <div id="acopladores" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="pigtail">Pigtail:</label>
+                    <div id="pigtail" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="cordaoOptico">Cordão Óptico:</label>
+                    <div id="cordaoOptico" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="terminadorOptico">Terminador Óptico:</label>
+                    <div id="terminadorOptico" class="result-value"></div>
+                </div>
+            
+                <!-- Rack -->
+                <div class="result-group">
+                    <label for="tamanhoTotal">Tamanho do rack:</label>
+                    <div id="tamanhoTotal" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="nRack">Número de Racks:</label>
+                    <div id="nRack" class="result-value"></div>
+                </div>
             </div>
+
+            <div id="sala-eqp">
+                <h2>Resultados para Sala de Equipamentos:</h2>
+            
+                <div class="result-group">
+                    <label for="seParesFibra">Pares de Fibra:</label>
+                    <div id="seParesFibra" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="seSwitchDio">Switch:</label>
+                    <div id="seSwitchDio" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="seDio">DIO:</label>
+                    <div id="seDio" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="seOrganizadorCaboFrontalFibra">Organizador Cabo Frontal Fibra:</label>
+                    <div id="seOrganizadorCaboFrontalFibra" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="seAcopladores">Acopladores:</label>
+                    <div id="seAcopladores" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="sePigtail">Pigtail:</label>
+                    <div id="sePigtail" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="seCordaoOptico">Cordão Óptico:</label>
+                    <div id="seCordaoOptico" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="seTerminadorOptico">Terminador Óptico:</label>
+                    <div id="seTerminadorOptico" class="result-value"></div>
+                </div>
         
-            <div class="result-group">
-                <label for="tomadas">Tomadas:</label>
-                <div id="tomadas" class="result-value"></div>
+                <div class="result-group">
+                    <label for="seEtiquetasRack">Etiquetas Rack:</label>
+                    <div id="seEtiquetasRack" class="result-value"></div>
+                </div>
+        
+                <div class="result-group">
+                    <label for="seEtiquetasSwitchDio">Etiquetas Switch Dio:</label>
+                    <div id="seEtiquetasSwitchDio" class="result-value"></div>
+                </div>
+        
+                <div class="result-group">
+                    <label for="seAbracadeiraVelcro">Abraçadeira Velcro:</label>
+                    <div id="seAbracadeiraVelcro" class="result-value"></div>
+                </div>
+        
+                <div class="result-group">
+                    <label for="seAbracadeiraHellermann">Abraçadeira Hellermann:</label>
+                    <div id="seAbracadeiraHellermann" class="result-value"></div>
+                </div>
+        
+                <div class="result-group">
+                    <label for="seFiltroDeLinha">Filtro de Linha:</label>
+                    <div id="seFiltroDeLinha" class="result-value"></div>
+                </div>
+        
+                <div class="result-group">
+                    <label for="sePorcaGaiola">Porca Gaiola:</label>
+                    <div id="sePorcaGaiola" class="result-value"></div>
+                </div>
+        
+                <div class="result-group">
+                    <label for="seReguaFechamento">Regua Fechamento:</label>
+                    <div id="seReguaFechamento" class="result-value"></div>
+                </div>
+        
+                <div class="result-group">
+                    <label for="seTamanho150">Tamanho do rack:</label>
+                    <div id="seTamanho150" class="result-value"></div>
+                </div>
+        
+                <div class="result-group">
+                    <label for="seNRacks">Número de Racks:</label>
+                    <div id="seNRacks" class="result-value"></div>
+                </div>
             </div>
-        
-            <div class="result-group">
-                <label for="espelhos">Espelhos:</label>
-                <div id="espelhos" class="result-value"></div>
+            <div id="predio-principal">
+                <h2>Resultados para sala de equipamento principal:</h2>
+    
+                <div class="result-group">
+                    <label for="spParesFibra">Pares de Fibra:</label>
+                    <div id="spParesFibra" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="spSwitchDio">Switch Dio:</label>
+                    <div id="spSwitchDio" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="spDio">DIO:</label>
+                    <div id="spDio" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="spOrganizadorCaboFrontalFibra">Organizador Cabo Frontal Fibra:</label>
+                    <div id="spOrganizadorCaboFrontalFibra" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="spAcopladores">Acopladores:</label>
+                    <div id="spAcopladores" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="spPigtail">Pigtail:</label>
+                    <div id="spPigtail" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="spCordaoOptico">Cordão Óptico:</label>
+                    <div id="spCordaoOptico" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="spTerminadorOptico">Terminador Óptico:</label>
+                    <div id="spTerminadorOptico" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="spEtiquetasRack">Etiquetas Rack:</label>
+                    <div id="spEtiquetasRack" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="spEtiquetasSwitchDio">Etiquetas Switch Dio:</label>
+                    <div id="spEtiquetasSwitchDio" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="spAbracadeiraVelcro">Abraçadeira Velcro:</label>
+                    <div id="spAbracadeiraVelcro" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="spAbracadeiraHellermann">Abraçadeira Hellermann:</label>
+                    <div id="spAbracadeiraHellermann" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="spFiltroDeLinha">Filtro de Linha:</label>
+                    <div id="spFiltroDeLinha" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="spPorcaGaiola">Porca Gaiola:</label>
+                    <div id="spPorcaGaiola" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="spReguaFechamento">Regua Fechamento:</label>
+                    <div id="spReguaFechamento" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="spTamanho150">Tamanho do rack:</label>
+                    <div id="spTamanho150" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="spNRacks">Número de Racks:</label>
+                    <div id="spNRacks" class="result-value"></div>
+                </div>
             </div>
-        
-            <div class="result-group">
-                <label for="patchCordAzul">Patch Cord Azul:</label>
-                <div id="patchCordAzul" class="result-value"></div>
+
+            <div id="res-total">
+                <h2>Resultados Totais:</h2>
+    
+                <div class="result-group">
+                    <label for="tQPontos">Quantidade de Pontos:</label>
+                    <div id="tQPontos" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="tTomadas">Tomadas:</label>
+                    <div id="tTomadas" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="tEspelhos">Espelhos:</label>
+                    <div id="tEspelhos" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="tPatchCordAzul">Patch Cord Azul:</label>
+                    <div id="tPatchCordAzul" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="tPatchCordVermelho">Patch Cord Vermelho:</label>
+                    <div id="tPatchCordVermelho" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="tPatchCordBranco">Patch Cord Branco:</label>
+                    <div id="tPatchCordBranco" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="tPatchPanel">Patch Panel:</label>
+                    <div id="tPatchPanel" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="tSwitchRede">Switch Rede:</label>
+                    <div id="tSwitchRede" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="tOrganizadorCaboFrontal">Organizador Cabo Frontal:</label>
+                    <div id="tOrganizadorCaboFrontal" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="tTamanhoBandeja">Tamanho Bandeja:</label>
+                    <div id="tTamanhoBandeja" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="tParesFibra">Pares de Fibra:</label>
+                    <div id="tParesFibra" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="tSwitchDio">Switch Dio:</label>
+                    <div id="tSwitchDio" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="tDio">DIO:</label>
+                    <div id="tDio" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="tOrganizadorCaboFrontalFibra">Organizador Cabo Frontal Fibra:</label>
+                    <div id="tOrganizadorCaboFrontalFibra" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="tAcopladores">Acopladores:</label>
+                    <div id="tAcopladores" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="tPigtail">Pigtail:</label>
+                    <div id="tPigtail" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="tCordaoOptico">Cordão Óptico:</label>
+                    <div id="tCordaoOptico" class="result-value"></div>
+                </div>
+            
+                <div class="result-group">
+                    <label for="tTerminadorOptico">Terminador Óptico:</label>
+                    <div id="tTerminadorOptico" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="tEtiquetasRack">Etiquetas Rack:</label>
+                    <div id="tEtiquetasRack" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="tEtiquetasSwitchDio">Etiquetas Switch Dio:</label>
+                    <div id="tEtiquetasSwitchDio" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="tAbracadeiraVelcro">Abraçadeira Velcro:</label>
+                    <div id="tAbracadeiraVelcro" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="tAbracadeiraHellermann">Abraçadeira Hellermann:</label>
+                    <div id="tAbracadeiraHellermann" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="tFiltroDeLinha">Filtro de Linha:</label>
+                    <div id="tFiltroDeLinha" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="tEtiquetasPortaPatchPanel">Etiquetas Porta Patch Panel:</label>
+                    <div id="tEtiquetasPortaPatchPanel" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="tEtiquetasPatchCable">Etiquetas Patch Cable:</label>
+                    <div id="tEtiquetasPatchCable" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="tEtiquetasPatchPanel">Etiquetas Patch Panel:</label>
+                    <div id="tEtiquetasPatchPanel" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="tEtiquetasTomadasEspelhos">Etiquetas Tomadas e Espelhos:</label>
+                    <div id="tEtiquetasTomadasEspelhos" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="tEtiquetaCaboUTP">Etiqueta Cabo UTP:</label>
+                    <div id="tEtiquetaCaboUTP" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="tAbracadeiraPlastica">Abraçadeira Plástica:</label>
+                    <div id="tAbracadeiraPlastica" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="tReguaOitoTomadas">Regua 8 Tomadas:</label>
+                    <div id="tReguaOitoTomadas" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="tReguaFechamento">Regua Fechamento:</label>
+                    <div id="tReguaFechamento" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="tPorcaGaiola">Porca Gaiola:</label>
+                    <div id="tPorcaGaiola" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="tTamanhoTotal">Tamanho Total:</label>
+                    <div id="tTamanhoTotal" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="tNRacks">Número de Racks:</label>
+                    <div id="tNRacks" class="result-value"></div>
+                </div>
             </div>
-        
-            <div class="result-group">
-                <label for="patchCordVermelho">Patch Cord Vermelho:</label>
-                <div id="patchCordVermelho" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="patchCordBranco">Patch Cord Branco:</label>
-                <div id="patchCordBranco" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="patchPanel">Patch Panel:</label>
-                <div id="patchPanel" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="switchRede">Switch para área de trabalho:</label>
-                <div id="switchRede" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="organizadorCaboFrontal">Organizador Cabo Frontal:</label>
-                <div id="organizadorCaboFrontal" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="tamanhoBandeja">Tamanho Bandeja:</label>
-                <div id="tamanhoBandeja" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="unidadesRack">Unidades por Rack:</label>
-                <div id="unidadesRack" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="nRack">Número de Racks:</label>
-                <div id="nRack" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="qCamera">Câmeras:</label>
-                <div id="qCamera" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="qVoip">VoIPs:</label>
-                <div id="qVoip" class="result-value"></div>
-            </div>
-        
-            <!-- Miscelânia UTP -->
-            <div class="result-group">
-                <label for="etiquetasPortaPatchPanel">Etiquetas Porta Patch Panel:</label>
-                <div id="etiquetasPortaPatchPanel" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="etiquetasPatchCable">Etiquetas Patch Cable:</label>
-                <div id="etiquetasPatchCable" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="etiquetasPatchPanel">Etiquetas Patch Panel:</label>
-                <div id="etiquetasPatchPanel" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="etiquetasTomadasEspelhos">Etiquetas Tomadas Espelhos:</label>
-                <div id="etiquetasTomadasEspelhos" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="etiquetaCaboUTP">Etiqueta Cabo UTP:</label>
-                <div id="etiquetaCaboUTP" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="abracadeiraPlastica">Abraçadeira Plástica:</label>
-                <div id="abracadeiraPlastica" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="reguaOitoTomadas">Régua Oito Tomadas:</label>
-                <div id="reguaOitoTomadas" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="reguaFechamento">Régua de Fechamento:</label>
-                <div id="reguaFechamento" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="porcaGaiola">Porca Gaiola:</label>
-                <div id="porcaGaiola" class="result-value"></div>
-            </div>
-        
-            <!-- Miscelânia Fibra -->
-            <div class="result-group">
-                <label for="etiquetasRack">Etiquetas Rack:</label>
-                <div id="etiquetasRack" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="etiquetasSwitchDio">Etiquetas Switch DIO:</label>
-                <div id="etiquetasSwitchDio" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="abracadeiraVelcro">Abraçadeira de Velcro:</label>
-                <div id="abracadeiraVelcro" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="abracadeiraHellermann">Abraçadeira Hellermann:</label>
-                <div id="abracadeiraHellermann" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="filtroDeLinha">Filtro de Linha:</label>
-                <div id="filtroDeLinha" class="result-value"></div>
-            </div>
-        
-            <!-- Fibra óptica -->
-            <div class="result-group">
-                <label for="paresFibra">Pares de Fibra:</label>
-                <div id="paresFibra" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="switchDio">Switch para DIO:</label>
-                <div id="switchDio" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="dio">DIO:</label>
-                <div id="dio" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="organizadorCaboFrontalFibra">Organizador Cabo Frontal Fibra:</label>
-                <div id="organizadorCaboFrontalFibra" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="acopladores">Acopladores:</label>
-                <div id="acopladores" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="pigtail">Pigtail:</label>
-                <div id="pigtail" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="cordaoOptico">Cordão Óptico:</label>
-                <div id="cordaoOptico" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="terminadorOptico">Terminador Óptico:</label>
-                <div id="terminadorOptico" class="result-value"></div>
-            </div>
-        
-            <!-- Rack -->
-            <div class="result-group">
-                <label for="tamanhoTotal">Tamanho do rack:</label>
-                <div id="tamanhoTotal" class="result-value"></div>
-            </div>
-        
-            <div class="result-group">
-                <label for="nRack">Número de Racks:</label>
-                <div id="nRack" class="result-value"></div>
-            </div>
-        
+
         </div>
 
     <script src="other/js.js"></script>
