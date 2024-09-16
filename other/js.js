@@ -318,7 +318,7 @@ function calcularMateriais() {
         salapredio.pigtail = salaeqp.paresFibra;
         salapredio.etiquetasSwitchDio = salapredio.switchDio + salapredio.dio + eqp.tamanhoBandeja;
         salapredio.abracadeiraVelcro = 1; // rolo de 3 metros
-        salapredio.abracadeiraHellermann = 0;
+        salapredio.abracadeiraHellermann = 1;
         salapredio.filtroDeLinha = 2;
 
         salapredio.unidadesUsadas = salapredio.switchDio + salapredio.dio + salapredio.organizadorCaboFrontalFibra + eqp.tamanhoBandeja + 2; // 2U DVR
