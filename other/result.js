@@ -3,6 +3,7 @@ function atualizaResultado() {
     document.getElementById("qPontos").innerText = eqp.qPontos;
     document.getElementById("tomadas").innerText = eqp.tomadas;
     document.getElementById("espelhos").innerText = eqp.espelhos;
+    document.getElementById('patchcable').innerText = eqp.patchCable;
     document.getElementById("patchCordAzul").innerText = eqp.patchCordAzul;
     document.getElementById("patchCordVermelho").innerText = eqp.patchCordVermelho;
     document.getElementById("patchCordBranco").innerText = eqp.patchCordBranco;
@@ -115,8 +116,10 @@ function atualizaResultado() {
     document.getElementById("tReguaOitoTomadas").innerText = total.reguaOitoTomadas;
     document.getElementById("tReguaFechamento").innerText = total.reguaFechamento;
     document.getElementById("tPorcaGaiola").innerText = total.porcaGaiola;
-    document.getElementById("tTamanhoTotal").innerText = total.tamanhoTotal;
-    document.getElementById("tNRacks").innerText = total.nRacks;
+    document.getElementById("tTamanhoRackFibra").innerText = total.tamanhoTotalRackFibra;
+    document.getElementById("tNRacksFibra").innerText = total.nRacksFibra;
+    document.getElementById("tTamanhoRackMalha").innerText = total.tamanhoTotal;
+    document.getElementById("tNRacksMalha").innerText = total.nRacks;
 
     document.querySelector(".container-res").scrollIntoView({ behavior: 'smooth' });
 }

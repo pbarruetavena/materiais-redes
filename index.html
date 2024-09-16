@@ -28,7 +28,7 @@
                 <input type="number" id="qVoip" name="qVoip" min="1" required>
             </label>
 
-            <label for="bandeja">Tamanho bandeja:
+            <label for="bandeja">Tamanho Bandeja fixa:
                 <input type="number" id="bandeja" name="bandeja" min="1" required>
             </label>
 
@@ -64,8 +64,8 @@
 
             <label for="tipoPigtail">Conector:
                 <select value="24" id="tipoPigtail" name="tipoPigtail" required>
-                    <option value="simples">simples</option>
-                    <option value="duplo">duplo</option>
+                    <option value="simples">Simples</option>
+                    <option value="duplo">Duplo</option>
                 </select>
             </label>
 
@@ -96,52 +96,57 @@
             <div id="res-pavimento">
                 <h2>Resultados Calculados para cada pavimento:</h2>
                 <div class="result-group">
-                    <label for="qPontos">Pontos:</label>
+                    <label for="qPontos">Pontos de telecom:</label>
                     <div id="qPontos" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
-                    <label for="tomadas">Tomadas:</label>
+                    <label for="tomadas">Tomada RJ45 femêa categoria 6:</label>
                     <div id="tomadas" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
-                    <label for="espelhos">Espelhos:</label>
+                    <label for="espelhos">Espelhos 4x4 - 2 furações/entradas:</label>
                     <div id="espelhos" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="patchcable">Patch Cables cat.6:</label>
+                    <div id="patchcable" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
-                    <label for="patchCordAzul">Patch Cord Azul:</label>
+                    <label for="patchCordAzul">Patch Cord Azul cat.6:</label>
                     <div id="patchCordAzul" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
-                    <label for="patchCordVermelho">Patch Cord Vermelho:</label>
+                    <label for="patchCordVermelho">Patch Cord Vermelho cat.6:</label>
                     <div id="patchCordVermelho" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
-                    <label for="patchCordBranco">Patch Cord Branco:</label>
+                    <label for="patchCordBranco">Patch Cord Branco cat.6:</label>
                     <div id="patchCordBranco" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
-                    <label for="patchPanel">Patch Panel:</label>
+                    <label for="patchPanel">Patch Panel cat.6, 24 portas (PPMH - Patch de malha Horizontal):</label>
                     <div id="patchPanel" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
-                    <label for="switchRede">Switch para área de trabalho:</label>
+                    <label for="switchRede">Switch para área de trabalho 24 portas:</label>
                     <div id="switchRede" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
-                    <label for="organizadorCaboFrontal">Organizador Cabo Frontal:</label>
+                    <label for="organizadorCaboFrontal">Organizador Cabo Frontal (1U):</label>
                     <div id="organizadorCaboFrontal" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
-                    <label for="tamanhoBandeja">Tamanho Bandeja:</label>
+                    <label for="tamanhoBandeja">Tamanho Bandeja fixa em U:</label>
                     <div id="tamanhoBandeja" class="result-value"></div>
                 </div>
             
@@ -220,7 +225,7 @@
                 </div>
             
                 <div class="result-group">
-                    <label for="abracadeiraHellermann">Abraçadeira Hellermann:</label>
+                    <label for="abracadeiraHellermann">Abraçadeira Hellermann (conjunto de 100 unidades):</label>
                     <div id="abracadeiraHellermann" class="result-value"></div>
                 </div>
             
@@ -246,7 +251,7 @@
                 </div>
             
                 <div class="result-group">
-                    <label for="organizadorCaboFrontalFibra">Organizador Cabo Frontal Fibra:</label>
+                    <label for="organizadorCaboFrontalFibra">Organizador Cabo Frontal Fibra (1U):</label>
                     <div id="organizadorCaboFrontalFibra" class="result-value"></div>
                 </div>
             
@@ -336,12 +341,12 @@
                 </div>
         
                 <div class="result-group">
-                    <label for="seAbracadeiraVelcro">Abraçadeira Velcro:</label>
+                    <label for="seAbracadeiraVelcro">Abraçadeira Velcro (rolo 3 metros):</label>
                     <div id="seAbracadeiraVelcro" class="result-value"></div>
                 </div>
         
                 <div class="result-group">
-                    <label for="seAbracadeiraHellermann">Abraçadeira Hellermann:</label>
+                    <label for="seAbracadeiraHellermann">Abraçadeira Hellermann (conjunto de 100 unidades):</label>
                     <div id="seAbracadeiraHellermann" class="result-value"></div>
                 </div>
         
@@ -379,12 +384,12 @@
                 </div>
             
                 <div class="result-group">
-                    <label for="spSwitchDio">Switch Dio:</label>
+                    <label for="spSwitchDio">Switch de fibra óptica 24 portas:</label>
                     <div id="spSwitchDio" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
-                    <label for="spDio">DIO:</label>
+                    <label for="spDio">DIO de 24 entradas:</label>
                     <div id="spDio" class="result-value"></div>
                 </div>
             
@@ -419,17 +424,17 @@
                 </div>
 
                 <div class="result-group">
-                    <label for="spEtiquetasSwitchDio">Etiquetas Switch Dio:</label>
+                    <label for="spEtiquetasSwitchDio">Etiquetas Switch para fibra óptica:</label>
                     <div id="spEtiquetasSwitchDio" class="result-value"></div>
                 </div>
 
                 <div class="result-group">
-                    <label for="spAbracadeiraVelcro">Abraçadeira Velcro:</label>
+                    <label for="spAbracadeiraVelcro">Abraçadeira Velcro (rolo 3 metros):</label>
                     <div id="spAbracadeiraVelcro" class="result-value"></div>
                 </div>
 
                 <div class="result-group">
-                    <label for="spAbracadeiraHellermann">Abraçadeira Hellermann:</label>
+                    <label for="spAbracadeiraHellermann">Abraçadeira Hellermann (conjunto de 100 unidades):</label>
                     <div id="spAbracadeiraHellermann" class="result-value"></div>
                 </div>
 
@@ -449,7 +454,7 @@
                 </div>
 
                 <div class="result-group">
-                    <label for="spTamanho150">Tamanho do rack:</label>
+                    <label for="spTamanho150">Tamanho do rack em U:</label>
                     <div id="spTamanho150" class="result-value"></div>
                 </div>
 
@@ -463,52 +468,52 @@
                 <h2>Resultados Totais:</h2>
     
                 <div class="result-group">
-                    <label for="tQPontos">Quantidade de Pontos:</label>
+                    <label for="tQPontos">Quantidade de Pontos de telecom:</label>
                     <div id="tQPontos" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
-                    <label for="tTomadas">Tomadas:</label>
+                    <label for="tTomadas">Tomada RJ45 femêa categoria 6:</label>
                     <div id="tTomadas" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
-                    <label for="tEspelhos">Espelhos:</label>
+                    <label for="tEspelhos">Espelhos 4x4 - 2 furações/entradas:</label>
                     <div id="tEspelhos" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
-                    <label for="tPatchCordAzul">Patch Cord Azul:</label>
+                    <label for="tPatchCordAzul">Patch Cord Azul cat.6:</label>
                     <div id="tPatchCordAzul" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
-                    <label for="tPatchCordVermelho">Patch Cord Vermelho:</label>
+                    <label for="tPatchCordVermelho">Patch Cord Vermelho cat.6:</label>
                     <div id="tPatchCordVermelho" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
-                    <label for="tPatchCordBranco">Patch Cord Branco:</label>
+                    <label for="tPatchCordBranco">Patch Cord Branco cat.6:</label>
                     <div id="tPatchCordBranco" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
-                    <label for="tPatchPanel">Patch Panel:</label>
+                    <label for="tPatchPanel">Patch Panel cat.6, 24 portas (PPMH - Patch de malha Horizontal):</label>
                     <div id="tPatchPanel" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
-                    <label for="tSwitchRede">Switch Rede:</label>
+                    <label for="tSwitchRede">Switch Rede 24 portas:</label>
                     <div id="tSwitchRede" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
-                    <label for="tOrganizadorCaboFrontal">Organizador Cabo Frontal:</label>
+                    <label for="tOrganizadorCaboFrontal">Organizador Cabo Frontal (1U):</label>
                     <div id="tOrganizadorCaboFrontal" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
-                    <label for="tTamanhoBandeja">Tamanho Bandeja:</label>
+                    <label for="tTamanhoBandeja">Tamanho Bandeja fixa:</label>
                     <div id="tTamanhoBandeja" class="result-value"></div>
                 </div>
             
@@ -518,12 +523,12 @@
                 </div>
             
                 <div class="result-group">
-                    <label for="tSwitchDio">Switch Dio:</label>
+                    <label for="tSwitchDio">Switch para fibra óptica de 24 portas:</label>
                     <div id="tSwitchDio" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
-                    <label for="tDio">DIO:</label>
+                    <label for="tDio">DIO de 24 portas:</label>
                     <div id="tDio" class="result-value"></div>
                 </div>
             
@@ -563,12 +568,12 @@
                 </div>
 
                 <div class="result-group">
-                    <label for="tAbracadeiraVelcro">Abraçadeira Velcro:</label>
+                    <label for="tAbracadeiraVelcro">Abraçadeira Velcro (rolo 3 metros):</label>
                     <div id="tAbracadeiraVelcro" class="result-value"></div>
                 </div>
 
                 <div class="result-group">
-                    <label for="tAbracadeiraHellermann">Abraçadeira Hellermann:</label>
+                    <label for="tAbracadeiraHellermann">Abraçadeira Hellermann (conjunto de 100 unidades):</label>
                     <div id="tAbracadeiraHellermann" class="result-value"></div>
                 </div>
 
@@ -623,13 +628,23 @@
                 </div>
 
                 <div class="result-group">
-                    <label for="tTamanhoTotal">Tamanho Total:</label>
-                    <div id="tTamanhoTotal" class="result-value"></div>
+                    <label>Tamanho dos racks de backbone:</label>
+                    <div id="tTamanhoRackFibra" class="result-value"></div>
                 </div>
 
                 <div class="result-group">
-                    <label for="tNRacks">Número de Racks:</label>
-                    <div id="tNRacks" class="result-value"></div>
+                    <label >Número de Racks de backbone:</label>
+                    <div id="tNRacksFibra" class="result-value"></div>
+                </div>
+
+                <div class="result-group"></div>
+                    <label for="tTamanhoRackMalha">Tamanho Total:</label>
+                    <div id="tTamanhoRackMalha" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="tNRacksMalha">Número de Racks:</label>
+                    <div id="tNRacksMalha" class="result-value"></div>
                 </div>
             </div>
 

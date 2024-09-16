@@ -105,6 +105,11 @@ total = {
     // RACK
     tamanhoTotal: null,
     nRacks: null,
+
+
+    // RACK FIBRA
+    tamanhoTotalRackFibra: null,
+    nRacksFibra: null,
 };
 
 salaeqp = {
@@ -160,10 +165,11 @@ function calcularMateriais() {
     if (tipoBackbone == 1) {
         document.getElementById("opcao-predio-principal").style.display = "none";
         document.getElementById("opcao-sala-eqp1").textContent = "Sala de Equipamentos";
+        document.querySelector('#sala-eqp h2').textContent = "Resultado da sala de equipamentos";
     } else {
         document.getElementById('opcao-predio-principal').style.display = "block";
         document.getElementById("opcao-sala-eqp1").textContent = "Sala de equipamentos - Backbone secundário"
-
+        document.querySelector('#sala-eqp h2').textContent = "Resultado da sala de equipamentos secundária";
     }
 
     // Pegando os valores dos inputs
@@ -181,6 +187,7 @@ function calcularMateriais() {
     eqp.patchCordAzul = eqp.tomadas;
     eqp.patchCordVermelho = eqp.qCamera;
     eqp.patchCordBranco = eqp.qVoip;
+    eqp.patchCable = eqp.tomadas;
     eqp.patchPanel = Math.ceil(eqp.tomadas / 24);
     eqp.switchRede = eqp.patchPanel;
     eqp.organizadorCaboFrontal = eqp.switchRede + eqp.patchPanel;
@@ -265,7 +272,7 @@ function calcularMateriais() {
 
     salaeqp.etiquetasSwitchDio = salaeqp.switchDio + salaeqp.dio + eqp.tamanhoBandeja;
     salaeqp.abracadeiraVelcro = 1; // rolo de 3 metros
-    salaeqp.abracadeiraHellermann = 0;
+    salaeqp.abracadeiraHellermann = 1;
     salaeqp.filtroDeLinha = 2;
     salaeqp.unidadesUsadas = salaeqp.switchDio + salaeqp.dio + salaeqp.organizadorCaboFrontalFibra + eqp.tamanhoBandeja + 2; // 2U DVR
     salaeqp.tamanho150 = salaeqp.unidadesUsadas * 1.5
@@ -353,13 +360,13 @@ function calcularMateriais() {
 
     //fibra
     total.paresFibra = eqp.paresFibra *nPav;
-    total.switchDio = eqp.switchDio *nPav;
-    total.dio = eqp.dio *nPav;
-    total.organizadorCaboFrontalFibra = eqp.organizadorCaboFrontalFibra *nPav;
-    total.acopladores = eqp.acopladores *nPav;
-    total.pigtail = eqp.pigtail *nPav;
-    total.cordaoOptico = eqp.cordaoOptico *nPav;
-    total.terminadorOptico = eqp.terminadorOptico *nPav;
+    total.switchDio = eqp.switchDio *nPav + salaeqp.switchDio + salapredio.switchDio;
+    total.dio = eqp.dio *nPav + salaeqp.dio + salapredio.dio;
+    total.organizadorCaboFrontalFibra = eqp.organizadorCaboFrontalFibra *nPav + salaeqp.organizadorCaboFrontalFibra + salapredio.organizadorCaboFrontalFibra;
+    total.acopladores = eqp.acopladores *nPav + salaeqp.acopladores + salapredio.acopladores;
+    total.pigtail = eqp.pigtail *nPav + salaeqp.pigtail + salapredio.pigtail;
+    total.cordaoOptico = eqp.cordaoOptico *nPav + salaeqp.cordaoOptico + salapredio.cordaoOptico;
+    total.terminadorOptico = eqp.terminadorOptico *nPav + salaeqp.terminadorOptico + salapredio.terminadorOptico;
 
     // miscelania rede
     total.etiquetasPortaPatchPanel = eqp.etiquetasPortaPatchPanel * nPav;
@@ -372,17 +379,23 @@ function calcularMateriais() {
     
 
     // miscelania fibra
-    total.etiquetasRack = eqp.etiquetasRack * nPav;
-    total.etiquetasSwitchDio = eqp.etiquetasSwitchDio * nPav;
-    total.abracadeiraVelcro = eqp.abracadeiraVelcro * nPav;
-    total.abracadeiraHellermann = eqp.abracadeiraHellermann * nPav;
-    total.filtroDeLinha = eqp.filtroDeLinha * nPav;
+    total.etiquetasRack = eqp.etiquetasRack * nPav  + salaeqp.etiquetasRack + salapredio.etiquetasRack;
+    total.etiquetasSwitchDio = eqp.etiquetasSwitchDio * nPav  + salaeqp.etiquetasSwitchDio + salapredio.etiquetasSwitchDio;
+    total.abracadeiraVelcro = eqp.abracadeiraVelcro * nPav + salaeqp.abracadeiraVelcro + salapredio.abracadeiraVelcro;
+    total.abracadeiraHellermann = eqp.abracadeiraHellermann * nPav + salaeqp.abracadeiraHellermann + salapredio.abracadeiraHellermann;
+    total.filtroDeLinha = eqp.filtroDeLinha * nPav + salaeqp.filtroDeLinha + salapredio.filtroDeLinha;
 
     // rack
     total.tamanhoTotal = eqp.tamanhoTotal;
-    total.nRacks = eqp.nRacks * nPav ;
-    total.reguaFechamento = eqp.reguaFechamento * nPav;
-    total.porcaGaiola = eqp.porcaGaiola * nPav;
+    total.nRacks = eqp.nRacks * nPav;
+    total.reguaFechamento = eqp.reguaFechamento * nPav + salaeqp.reguaFechamento + salapredio.reguaFechamento;
+    total.porcaGaiola = eqp.porcaGaiola * nPav + salaeqp.porcaGaiola + salapredio.porcaGaiola;
+
+    // rack de fibra 
+
+    total.tamanhoTotalRackFibra = salaeqp.tamanhoTotal + salapredio.tamanhoTotal;
+    total.nRacksFibra = salaeqp.nRacks + salapredio.nRacks;
+
 
     if (tipoBackbone == 2) {
         total.paresFibra += salapredio.paresFibra;
