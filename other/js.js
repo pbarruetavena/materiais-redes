@@ -330,7 +330,7 @@ function calcularMateriais() {
         predio = document.querySelector('#pPredio');
         numeroPredios = predio.value;
         eqp.quantidadeTransceiver = 1;
-        var distPredio = parseFloat(document.querySelector('#tPavimento').value, 10);
+        var distPredio = parseFloat(document.querySelector('#tPredio').value, 10);
         if (salaeqp.paresFibra >= 4) {
             salaeqp.totalFibra = distPredio * numeroPredios * 2 * Math.floor(salaeqp.paresFibra / 4);
             salaeqp.paresFibra = salaeqp.paresFibra + Math.floor(salaeqp.paresFibra / 4);
@@ -484,6 +484,7 @@ function calcularMateriais() {
             fibraExterna.tipoTransceiver = "1000Base-SX";
             fibraExterna.midiaTransceiver = "Fibra Multimodo 50μm";
             fibraExterna.janelaTransmissao = "850nm";
+
         }
         else if (distPredio < 3000 && distPredio >= 550) {
             fibraExterna.tipoTransceiver = "1000Base-LX";
