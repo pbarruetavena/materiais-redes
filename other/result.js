@@ -31,6 +31,7 @@ function atualizaResultado() {
     document.getElementById("filtroDeLinha").innerText = eqp.filtroDeLinha;
     // Fibra óptica
     document.getElementById("paresFibra").innerText = eqp.paresFibra;
+    document.getElementById('totalFibra').innerText = eqp.totalFibra;
     document.getElementById("switchDio").innerText = eqp.switchDio;
     document.getElementById("dio").innerText = eqp.dio;
     document.getElementById("organizadorCaboFrontalFibra").innerText = eqp.organizadorCaboFrontalFibra;
@@ -45,6 +46,11 @@ function atualizaResultado() {
 
     // sala de equipamentos
     document.getElementById("seParesFibra").innerText = salaeqp.paresFibra;
+    document.getElementById('seTotalInterno').innerText = eqp.totalFibra;
+    document.getElementById('seTipoTransceiver').innerText = fibraInterna.tipoTransceiver;
+    document.getElementById('seFibraTransceiver').innerText = fibraInterna.midiaTransceiver;
+    document.getElementById('seJanelaFibra').innerText = fibraInterna.janelaTransmissao;
+    document.getElementById('seTotalExterno').innerText = salaeqp.totalFibra;
     document.getElementById("seSwitchDio").innerText = salaeqp.switchDio;
     document.getElementById("seDio").innerText = salaeqp.dio;
     document.getElementById("seOrganizadorCaboFrontalFibra").innerText = salaeqp.organizadorCaboFrontalFibra;
@@ -65,6 +71,10 @@ function atualizaResultado() {
 
     // sala do prédio
     document.getElementById("spParesFibra").innerText = salapredio.paresFibra;
+    document.getElementById("spTotalFibra").innerText = salapredio.totalFibra;
+    document.getElementById('spTipoTransceiver').innerText = fibraExterna.tipoTransceiver;
+    document.getElementById('spFibraTransceiver').innerText = fibraExterna.midiaTransceiver;
+    document.getElementById('spJanelaFibra').innerText = fibraExterna.janelaTransmissao;
     document.getElementById("spSwitchDio").innerText = salapredio.switchDio;
     document.getElementById("spDio").innerText = salapredio.dio;
     document.getElementById("spOrganizadorCaboFrontalFibra").innerText = salapredio.organizadorCaboFrontalFibra;
@@ -95,6 +105,13 @@ function atualizaResultado() {
     document.getElementById("tOrganizadorCaboFrontal").innerText = total.organizadorCaboFrontal;
     document.getElementById("tTamanhoBandeja").innerText = total.tamanhoBandeja;
     document.getElementById("tParesFibra").innerText = total.paresFibra;
+    document.getElementById("tTotalFibra").innerText = total.totalFibra;
+    document.getElementById('tiTipoTransceiver').innerText = fibraInterna.tipoTransceiver;
+    document.getElementById('tiFibraTransceiver').innerText = fibraInterna.midiaTransceiver;
+    document.getElementById('tiJanelaFibra').innerText = fibraInterna.janelaTransmissao;
+    document.getElementById('tTipoTransceiver').innerText = fibraExterna.tipoTransceiver;
+    document.getElementById('tFibraTransceiver').innerText = fibraExterna.midiaTransceiver;
+    document.getElementById('tJanelaFibra').innerText = fibraExterna.janelaTransmissao;
     document.getElementById("tSwitchDio").innerText = total.switchDio;
     document.getElementById("tDio").innerText = total.dio;
     document.getElementById("tOrganizadorCaboFrontalFibra").innerText = total.organizadorCaboFrontalFibra;

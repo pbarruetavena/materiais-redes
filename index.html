@@ -31,9 +31,12 @@
             <label for="bandeja">Tamanho Bandeja fixa:
                 <input type="number" id="bandeja" name="bandeja" min="1" required>
             </label>
-
-            <label for="pfibras">Pares de fibra por andar:
+            <label for="pfibras">Pares de fibra de dado por andar:
                 <input type="number" id="pfibras" name="pfibras" min="1" required>
+            </label>
+
+            <label for="tPavimento">Altura do pavimento (em metros):
+                <input type="number" id="tPavimento" name="tPavimento" min="1" required>
             </label>
 
             <label>Tipo de backbone: <i class="info-icon">ℹ</i>
@@ -41,8 +44,7 @@
                     <option value="1">Apenas primário</option>
                     <option value="2">Secundário</option>
                 </select>
-            </label>
-            
+            </label> 
             <div id="tooltip" class="tooltip-box">
                 O backbone refere-se a quantos níveis de backbone são necessário no projeto. Marque apenas primário se apenas um nível de backbone for necessário, como por exemplo, em um prédio, no qual há uma sala de equipamentos e uma sala de telecomunicação por pavimento. Marque Backbone secundário caso houver mais de um prédio, no qual cada prédio tem uma sala de equipamento, cada pavimento uma sala de comunicação e no prédio principal há a sala de equipamentos principal, por onde chega a conexão exterior.
             </div>
@@ -51,14 +53,8 @@
                 <input type="number" id="pPredio" name="pPredio" min="1" required>
             </label>
 
-            <label for="taxa">Taxa de transmissão:
-                <select id="taxa" name="taxa" required>
-                    <option value="100MG">100Mgbps</option>
-                    <option value="250MG">250Mgbps</option>
-                    <option value="500MG">500Mgbps</option>
-                    <option value="1G">1Ggbps</option>
-                    <option value="10G">10Ggbps</option>
-                </select>
+            <label id="tPredioLabel" for="tPredio" style="display: none;">Distância média da unidade central aos prédios (em metro): 
+                <input type="number" id="tPredio" name="tPredio" min="1" required>
             </label>
 
 
@@ -239,6 +235,11 @@
                     <label for="paresFibra">Pares de Fibra FOMMIG 62,5nm:</label>
                     <div id="paresFibra" class="result-value"></div>
                 </div>
+
+                <div class="result-group">
+                    <label for="totalFibra">Tamanho total da fibra em metros:</label>
+                    <div id="totalFibra" class="result-value"></div>
+                </div>
             
                 <div class="result-group">
                     <label for="switchDio">Switch para DIO:</label>
@@ -293,6 +294,31 @@
                 <div class="result-group">
                     <label for="seParesFibra">Pares de Fibra FOMMIG 62,5nm</label>
                     <div id="seParesFibra" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="seTotalInterno">Total de fibra interna em metros:</label>
+                    <div id="seTotalInterno" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="seTipoTransceiver">Padrão de transmissão da fibra interna: </label>
+                    <div id="seTipoTransceiver" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="seFibraTransceiver">Tipo de fibra interna: </label>
+                    <div id="seFibraTransceiver" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="seJanelaFibra">Janela de transmissão da fibra óptica interna: </label>
+                    <div id="seJanelaFibra" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="seTotalExterno">Total de fibra externa em metros (caso haja um nível de backbone maior que esse):</label>
+                    <div id="seTotalExterno" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
@@ -381,6 +407,26 @@
                 <div class="result-group">
                     <label for="spParesFibra">Pares de Fibra FOMMIG 62,5nm</label>
                     <div id="spParesFibra" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="spTotalFibra">Tamanho total de fibra óptica: </label>
+                    <div id="spTotalFibra" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="spTipoTransceiver">Padrão de transmissão: </label>
+                    <div id="spTipoTransceiver" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="spFibraTransceiver">Tipo de fibra: </label>
+                    <div id="spFibraTransceiver" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="spJanelaFibra">Janela de transmissão da fibra óptica: </label>
+                    <div id="spJanelaFibra" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
@@ -518,8 +564,43 @@
                 </div>
             
                 <div class="result-group">
-                    <label for="tParesFibra">Pares de Fibra FOMMIG 62,5nm</label>
+                    <label for="tParesFibra">Pares de Fibra: </label>
                     <div id="tParesFibra" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="tTotalFibra">Tamanho total fibra óptica: </label>
+                    <div id="tTotalFibra" class="result-value"></div>
+                </div>
+                
+                <div class="result-group">
+                    <label for="tiTipoTransceiver">Padrão de transmissão da fibra interna: </label>
+                    <div id="tiTipoTransceiver" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="tiFibraTransceiver">Tipo de fibra interna: </label>
+                    <div id="tiFibraTransceiver" class="result-value"></div>
+                </div>
+
+                <div class="result-group">
+                    <label for="tiJanelaFibra">Janela de transmissão da fibra óptica interna: </label>
+                    <div id="tiJanelaFibra" class="result-value"></div>
+                </div>
+
+                <div class="result-group only-ext">
+                    <label for="tTipoTransceiver">Padrão de transmissão da fibra externa: </label>
+                    <div id="tTipoTransceiver" class="result-value"></div>
+                </div>
+
+                <div class="result-group only-ext">
+                    <label for="tFibraTransceiver">Tipo de fibra externa: </label>
+                    <div id="tFibraTransceiver" class="result-value"></div>
+                </div>
+
+                <div class="result-group only-ext">
+                    <label for="tJanelaFibra">Janela de transmissão da fibra óptica externa: </label>
+                    <div id="tJanelaFibra" class="result-value"></div>
                 </div>
             
                 <div class="result-group">
@@ -637,7 +718,7 @@
                     <div id="tNRacksFibra" class="result-value"></div>
                 </div>
 
-                <div class="result-group"></div>
+                <div class="result-group">
                     <label for="tTamanhoRackMalha">Tamanho Total:</label>
                     <div id="tTamanhoRackMalha" class="result-value"></div>
                 </div>

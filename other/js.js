@@ -1,4 +1,18 @@
 // Definindo o objeto para armazenar os dados
+fibraExterna = {
+    tipoTransceiver: null,
+    midiaTransceiver: null,
+    janelaTransmissao: null,
+    tamanho: null,
+}
+fibraInterna = {
+    tipoTransceiver: null,
+    midiaTransceiver: null,
+    janelaTransmissao: null,
+    tamanho: null,
+}
+
+
 eqp = {
     qPontos: null,
     tomadas: null,
@@ -26,6 +40,7 @@ eqp = {
     porcaGaiola: null,
 
     // miscelania fibra
+    totalFibra: null,
     etiquetasRack: null, // 
     etiquetasSwitchDio: null, //
     abracadeiraVelcro: null, // 
@@ -40,7 +55,8 @@ eqp = {
     organizadorCaboFrontalFibra: null,
     acopladores: null,
     pigtail: null,
-
+    tipoTransceiver: null,
+    quantidadeTransceiver: null,
     cordaoOptico: null,
     terminadorOptico: null,
 
@@ -81,7 +97,10 @@ total = {
     abracadeiraVelcro: null, // 
     abracadeiraHellermann: null, //
     filtroDeLinha: null, //
-
+    tipoTransceiver: null,
+    quantidadeTransceiver: null,
+    midiaTransceiver: null,
+    janelaTransmissao: null,
 
     // miscelania utp
     etiquetasPortaPatchPanel: null,
@@ -114,6 +133,7 @@ total = {
 
 salaeqp = {
     paresFibra: null,
+    totalFibra: null,
     switchDio: null,
     dio: null,
     organizadorCaboFrontalFibra: null,
@@ -179,6 +199,7 @@ function calcularMateriais() {
     eqp.qVoip = parseInt(document.querySelector("#qVoip").value, 10);
     const tamanhoBandeja = parseInt(document.querySelector("#bandeja").value, 10);
     eqp.paresFibra = parseInt(document.querySelector("#pfibras").value, 10);
+    tamanhoPav = parseFloat(document.querySelector('#tPavimento').value, 10);
 
     // Calculando os valores rede
     eqp.qPontos = pontosPavimento;
@@ -192,6 +213,10 @@ function calcularMateriais() {
     eqp.switchRede = eqp.patchPanel;
     eqp.organizadorCaboFrontal = eqp.switchRede + eqp.patchPanel;
     eqp.tamanhoBandeja = tamanhoBandeja;
+    eqp.totalFibra = 0;
+    for (var i = 1; i <= nPav; i++) {
+        eqp.totalFibra = eqp.totalFibra + tamanhoPav * (i + 1) * 2;
+    }
 
     // miscelania rede
     eqp.etiquetasPortaPatchPanel = eqp.patchPanel * 24;
@@ -257,6 +282,7 @@ function calcularMateriais() {
     //sala de equipamentos
 
     salaeqp.paresFibra = eqp.paresFibra * nPav + 1;
+    salaeqp.totalFibra = 0;
     if (salaeqp.paresFibra <= 4) {
         salaeqp.terminadorOptico = 1;
         salaeqp.dio = 0;
@@ -292,7 +318,7 @@ function calcularMateriais() {
     }
     else if (salaeqp.tamanho150 > 44) {
         salaeqp.tamanhoTotal = 44;
-        salaeqp.nRacks = Math.ceil(tamanho150 / 44);
+        salaeqp.nRacks = Math.ceil(salaeqp.tamanho150 / 44);
     }
     // continuacao miscelania
     salaeqp.etiquetasRack = salaeqp.nRacks;
@@ -303,6 +329,15 @@ function calcularMateriais() {
     if (tipoBackbone == 2) {
         predio = document.querySelector('#pPredio');
         numeroPredios = predio.value;
+        eqp.quantidadeTransceiver = 1;
+        var distPredio = parseFloat(document.querySelector('#tPavimento').value, 10);
+        if (salaeqp.paresFibra >= 4) {
+            salaeqp.totalFibra = distPredio * numeroPredios * 2 * Math.floor(salaeqp.paresFibra / 4);
+            salaeqp.paresFibra = salaeqp.paresFibra + Math.floor(salaeqp.paresFibra / 4);
+        } else {
+            salaeqp.totalFibra = distPredio * numeroPredios * 2;
+        }
+        salapredio.totalFibra = salaeqp.totalFibra * numeroPredios;
         salapredio.paresFibra = numeroPredios * salaeqp.paresFibra * nPav + 1;
         if (salapredio.paresFibra <= 4) {
             salapredio.terminadorOptico = numeroPredios;
@@ -339,7 +374,7 @@ function calcularMateriais() {
         }
         else if (salapredio.tamanho150 > 44) {
             salapredio.tamanhoTotal = 44;
-            salapredio.nRacks = Math.ceil(tamanho150 / 44);
+            salapredio.nRacks = Math.ceil(salapredio.tamanho150 / 44);
         }
         // continuacao miscelania
         salapredio.etiquetasRack = salapredio.nRacks;
@@ -359,14 +394,14 @@ function calcularMateriais() {
     total.tamanhoBandeja = eqp.tamanhoBandeja; // se for o mesmo para todos os pavimentos
 
     //fibra
-    total.paresFibra = eqp.paresFibra *nPav;
-    total.switchDio = eqp.switchDio *nPav + salaeqp.switchDio + salapredio.switchDio;
-    total.dio = eqp.dio *nPav + salaeqp.dio + salapredio.dio;
-    total.organizadorCaboFrontalFibra = eqp.organizadorCaboFrontalFibra *nPav + salaeqp.organizadorCaboFrontalFibra + salapredio.organizadorCaboFrontalFibra;
-    total.acopladores = eqp.acopladores *nPav + salaeqp.acopladores + salapredio.acopladores;
-    total.pigtail = eqp.pigtail *nPav + salaeqp.pigtail + salapredio.pigtail;
-    total.cordaoOptico = eqp.cordaoOptico *nPav + salaeqp.cordaoOptico + salapredio.cordaoOptico;
-    total.terminadorOptico = eqp.terminadorOptico *nPav + salaeqp.terminadorOptico + salapredio.terminadorOptico;
+    total.paresFibra = eqp.paresFibra * nPav;
+    total.switchDio = eqp.switchDio * nPav + salaeqp.switchDio + salapredio.switchDio;
+    total.dio = eqp.dio * nPav + salaeqp.dio + salapredio.dio;
+    total.organizadorCaboFrontalFibra = eqp.organizadorCaboFrontalFibra * nPav + salaeqp.organizadorCaboFrontalFibra + salapredio.organizadorCaboFrontalFibra;
+    total.acopladores = eqp.acopladores * nPav + salaeqp.acopladores + salapredio.acopladores;
+    total.pigtail = eqp.pigtail * nPav + salaeqp.pigtail + salapredio.pigtail;
+    total.cordaoOptico = eqp.cordaoOptico * nPav + salaeqp.cordaoOptico + salapredio.cordaoOptico;
+    total.terminadorOptico = eqp.terminadorOptico * nPav + salaeqp.terminadorOptico + salapredio.terminadorOptico;
 
     // miscelania rede
     total.etiquetasPortaPatchPanel = eqp.etiquetasPortaPatchPanel * nPav;
@@ -376,11 +411,11 @@ function calcularMateriais() {
     total.etiquetaCaboUTP = eqp.etiquetaCaboUTP * nPav;
     total.abracadeiraPlastica = eqp.abracadeiraPlastica * nPav;
     total.reguaOitoTomadas = eqp.reguaOitoTomadas * nPav;
-    
+
 
     // miscelania fibra
-    total.etiquetasRack = eqp.etiquetasRack * nPav  + salaeqp.etiquetasRack + salapredio.etiquetasRack;
-    total.etiquetasSwitchDio = eqp.etiquetasSwitchDio * nPav  + salaeqp.etiquetasSwitchDio + salapredio.etiquetasSwitchDio;
+    total.etiquetasRack = eqp.etiquetasRack * nPav + salaeqp.etiquetasRack + salapredio.etiquetasRack;
+    total.etiquetasSwitchDio = eqp.etiquetasSwitchDio * nPav + salaeqp.etiquetasSwitchDio + salapredio.etiquetasSwitchDio;
     total.abracadeiraVelcro = eqp.abracadeiraVelcro * nPav + salaeqp.abracadeiraVelcro + salapredio.abracadeiraVelcro;
     total.abracadeiraHellermann = eqp.abracadeiraHellermann * nPav + salaeqp.abracadeiraHellermann + salapredio.abracadeiraHellermann;
     total.filtroDeLinha = eqp.filtroDeLinha * nPav + salaeqp.filtroDeLinha + salapredio.filtroDeLinha;
@@ -395,6 +430,10 @@ function calcularMateriais() {
 
     total.tamanhoTotalRackFibra = salaeqp.tamanhoTotal + salapredio.tamanhoTotal;
     total.nRacksFibra = salaeqp.nRacks + salapredio.nRacks;
+    total.totalFibra = eqp.totalFibra;
+    fibraInterna.tipoTransceiver = "1000Base-SX";
+    fibraInterna.midiaTransceiver = "Fibra Multimodo 62.5μm";
+    fibraInterna.janelaTransmissao = "850nm";
 
 
     if (tipoBackbone == 2) {
@@ -426,7 +465,7 @@ function calcularMateriais() {
         total.reguaOitoTomadas *= numeroPredios;
         total.reguaFechamento *= numeroPredios;
         total.porcaGaiola *= numeroPredios;
-    
+
         // miscelania fibra
         total.etiquetasRack *= numeroPredios;
         total.etiquetasSwitchDio *= numeroPredios;
@@ -434,14 +473,30 @@ function calcularMateriais() {
         total.abracadeiraHellermann *= numeroPredios;
         total.filtroDeLinha *= numeroPredios;
         total.nRacks = eqp.nRacks * nPav;
-
-    
+        total.totalFibra = total.totalFibra + salapredio.totalFibra;
+        total.quantidadeTransceiver = numeroPredios * 2;
+        if (distPredio < 260) {
+            fibraExterna.tipoTransceiver = "1000Base-SX";
+            fibraExterna.midiaTransceiver = "Fibra Multimodo 62.5μm";
+            fibraExterna.janelaTransmissao = "850nm";
+        }
+        else if (distPredio < 550 && distPredio >= 260) {
+            fibraExterna.tipoTransceiver = "1000Base-SX";
+            fibraExterna.midiaTransceiver = "Fibra Multimodo 50μm";
+            fibraExterna.janelaTransmissao = "850nm";
+        }
+        else if (distPredio < 3000 && distPredio >= 550) {
+            fibraExterna.tipoTransceiver = "1000Base-LX";
+            fibraExterna.midiaTransceiver = "Fibra Monomodo 9μm";
+            fibraExterna.janelaTransmissao = "1310nm";
+        }
+        fibraExterna.tamanho = 4 * numeroPredios * distPredio;
+    } 
+    if(tipoBackbone == 1) {
+        fibraExterna.tipoTransceiver = "Sem backbone externo";
+        fibraExterna.midiaTransceiver = "Sem backbone externo";
+        fibraExterna.janelaTransmissao = "Sem backbone externo";
     }
-
-
-
-
-
 
     atualizaResultado();
 }
@@ -467,10 +522,25 @@ infoIcon.addEventListener('mouseleave', function () {
 // backbone secundário
 document.getElementById('backbone').addEventListener('change', function () {
     const predioLabel = document.getElementById('predioLabel');
+    const opcExt = document.querySelectorAll('.only-ext');
     if (this.value === '2') {
         predioLabel.style.display = 'block';
+        opcExt.forEach(function(element) {
+            element.style.display = 'block';
+          });
     } else {
         predioLabel.style.display = 'none';
+        opcExt.forEach(function(element) {
+            element.style.display = 'none';
+          });
+    }
+});
+document.getElementById('backbone').addEventListener('change', function () {
+    const tPredioLabel = document.getElementById('tPredioLabel');
+    if (this.value === '2') {
+        tPredioLabel.style.display = 'block';
+    } else {
+        tPredioLabel.style.display = 'none';
     }
 });
 
@@ -479,6 +549,7 @@ document.getElementById('backbone').addEventListener('change', function () {
 document.getElementById("res-pavimento").style.display = "none";
 document.getElementById("sala-eqp").style.display = "none";
 document.getElementById("predio-principal").style.display = "none";
+document.getElementById("res-total").style.display = "none";
 document.getElementById("options").addEventListener("change", function () {
     var selectedValue = this.value;
 
