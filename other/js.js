@@ -246,12 +246,12 @@ function calcularMateriais() {
     }
     else if (eqp.tamanho150 > 44) {
         eqp.tamanhoTotal = 44;
-        eqp.nRacks = Math.ceil(tamanho150 / 44);
+        eqp.nRacks = Math.ceil(eqp.tamanho150 / 44);
     }
     // continuacao miscelania
     eqp.etiquetasRack = eqp.nRacks;
-    eqp.reguaFechamento = eqp.tamanhoTotal - eqp.unidadesUsadas;
-    eqp.porcaGaiola = 4 * eqp.tamanhoTotal;
+    eqp.reguaFechamento = eqp.tamanhoTotal * eqp.nRacks - eqp.unidadesUsadas;
+    eqp.porcaGaiola = 4 * eqp.tamanhoTotal * eqp.nRacks;
 
 
     //sala de equipamentos
@@ -296,8 +296,8 @@ function calcularMateriais() {
     }
     // continuacao miscelania
     salaeqp.etiquetasRack = salaeqp.nRacks;
-    salaeqp.reguaFechamento = salaeqp.tamanhoTotal - salaeqp.unidadesUsadas;
-    salaeqp.porcaGaiola = 4 * salaeqp.tamanhoTotal;
+    salaeqp.reguaFechamento = salaeqp.tamanhoTotal * salaeqp.nRacks - salaeqp.unidadesUsadas;
+    salaeqp.porcaGaiola = 4 * salaeqp.tamanhoTotal * salaeqp.nRacks;
 
     // sala do prédio
     if (tipoBackbone == 2) {
@@ -343,8 +343,8 @@ function calcularMateriais() {
         }
         // continuacao miscelania
         salapredio.etiquetasRack = salapredio.nRacks;
-        salapredio.reguaFechamento = salapredio.tamanhoTotal - salapredio.unidadesUsadas;
-        salapredio.porcaGaiola = 4 * salapredio.tamanhoTotal;
+        salapredio.reguaFechamento = salapredio.tamanhoTotal * salapredio.nRacks - salapredio.unidadesUsadas;
+        salapredio.porcaGaiola = 4 * salapredio.tamanhoTotal * salapredio.nRacks;
     }
     // total dos n pavimentos
     total.qPontos = eqp.qPontos * nPav;
