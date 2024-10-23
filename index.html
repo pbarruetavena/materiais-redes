@@ -12,26 +12,25 @@
     <div class="container">
         <h2>Quantificação de Materiais para Rede LAN</h2>
         <form id="lanForm">
+            <label>Tipo de backbone: <i class="info-icon">ℹ</i>
+                <select id="backbone" name="backbone" required>
+                    <option value="1">Edifício (apenas primário)</option>
+                    <option value="2">Campus (primário e secundário)</option>
+                </select>
+            </label>
+            <div id="tooltip" class="tooltip-box">
+                O backbone refere-se a quantos níveis de backbone são necessário no projeto. Marque apenas primário se
+                apenas um nível de backbone for necessário, como por exemplo, em um prédio, no qual há uma sala de
+                equipamentos e uma sala de telecomunicação por pavimento. Marque Backbone secundário caso houver mais de
+                um prédio, no qual cada prédio tem uma sala de equipamento, cada pavimento uma sala de comunicação e no
+                prédio principal há a sala de equipamentos principal, por onde chega a conexão exterior.
+            </div>
+
             <label for="nPav">Número de pavimentos:
                 <input type="number" id="nPav" name="nPav" min="1" required>
             </label>
 
-            <label for="pontosPavimento">Quantidade de pontos de telecom por andar:
-                <input type="number" id="pontosPavimento" name="pontosPavimento" min="1" required>
-            </label>
-
-            <label for="qCameras">Cameras de Segurança por andar:
-                <input type="number" id="qCameras" name="qCameras" min="1" required>
-            </label>
-            
-            <label for="qVoip">Voip por andar:
-                <input type="number" id="qVoip" name="qVoip" min="1" required>
-            </label>
-
-            <label for="bandeja">Tamanho Bandeja fixa:
-                <input type="number" id="bandeja" name="bandeja" min="1" required>
-            </label>
-            <label for="pfibras">Pares de fibra de dado por andar:
+            <label class="primario" for="pfibras">Pares de fibra por andar:
                 <input type="number" id="pfibras" name="pfibras" min="1" required>
             </label>
 
@@ -39,37 +38,11 @@
                 <input type="number" id="tPavimento" name="tPavimento" min="1" required>
             </label>
 
-            <label>Tipo de backbone: <i class="info-icon">ℹ</i>
-                <select id="backbone" name="backbone" required>
-                    <option value="1">Apenas primário</option>
-                    <option value="2">Secundário</option>
-                </select>
-            </label> 
-            <div id="tooltip" class="tooltip-box">
-                O backbone refere-se a quantos níveis de backbone são necessário no projeto. Marque apenas primário se apenas um nível de backbone for necessário, como por exemplo, em um prédio, no qual há uma sala de equipamentos e uma sala de telecomunicação por pavimento. Marque Backbone secundário caso houver mais de um prédio, no qual cada prédio tem uma sala de equipamento, cada pavimento uma sala de comunicação e no prédio principal há a sala de equipamentos principal, por onde chega a conexão exterior.
-            </div>
-
-            <label id="predioLabel" for="pPredio" style="display: none;">Prédios (unidades de backbone secundário): 
+            <label class="secundario" id="predioLabel" for="pPredio" style="display: none;">Prédios (unidades de
+                backbone secundário):
                 <input type="number" id="pPredio" name="pPredio" min="1" required>
             </label>
 
-            <label id="tPredioLabel" for="tPredio" style="display: none;">Distância média da unidade central aos prédios (em metro): 
-                <input type="number" id="tPredio" name="tPredio" min="1" required>
-            </label>
-
-
-            <label for="tipoPigtail">Conector:
-                <select value="24" id="tipoPigtail" name="tipoPigtail" required>
-                    <option value="simples">Simples</option>
-                    <option value="duplo">Duplo</option>
-                </select>
-            </label>
-
-
-            <label for="accessPoints">Pontos de acesso por pavimento:
-                <input type="number" id="accessPoints" name="accessPoints" min="0" required>
-            </label>
-            
 
             <button type="button" onclick="calcularMateriais()">Calcular Materiais</button>
         </form>
@@ -77,659 +50,343 @@
         <div class="result" id="result"></div>
     </div>
 
-    
-        <div class="container-res">
-            <h2>Resultados</h2>
-            <label for="options">Mostrar:</label>
-            <select id="options">
-                <option value="">Selecione uma opção</option>
-                <option value="res-pavimento">Itens por pavimento</option>
-                <option id="opcao-sala-eqp1" value="sala-eqp">Sala de Equipamentos</option>
-                <option id="opcao-predio-principal" value="predio-principal">Sala de equipamentos backbone principal</option>
-                <option value="res-total">Total</option>
-            </select>
 
-            <div id="res-pavimento">
-                <h2>Resultados Calculados para cada pavimento:</h2>
-                <div class="result-group">
-                    <label for="qPontos">Pontos de telecom:</label>
-                    <div id="qPontos" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="tomadas">Tomada RJ45 femêa categoria 6:</label>
-                    <div id="tomadas" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="espelhos">Espelhos 4x4 - 2 furações/entradas:</label>
-                    <div id="espelhos" class="result-value"></div>
-                </div>
+    <div class="container-res">
+        <h2>Resultados</h2>
 
-                <div class="result-group">
-                    <label for="patchcable">Patch Cables cat.6:</label>
-                    <div id="patchcable" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="patchCordAzul">Patch Cord Azul cat.6:</label>
-                    <div id="patchCordAzul" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="patchCordVermelho">Patch Cord Vermelho cat.6:</label>
-                    <div id="patchCordVermelho" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="patchCordBranco">Patch Cord Branco cat.6:</label>
-                    <div id="patchCordBranco" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="patchPanel">Patch Panel cat.6, 24 portas (PPMH - Patch de malha Horizontal):</label>
-                    <div id="patchPanel" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="switchRede">Switch para área de trabalho 24 portas:</label>
-                    <div id="switchRede" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="organizadorCaboFrontal">Organizador Cabo Frontal (1U):</label>
-                    <div id="organizadorCaboFrontal" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="tamanhoBandeja">Tamanho Bandeja fixa em U:</label>
-                    <div id="tamanhoBandeja" class="result-value"></div>
-                </div>
-            
+        <div id="res-central">
+            <h2>Backbone primário:</h2>
+        
+            <div class="result-group">
+                <label for="dio">DIO:</label>
+                <div id="dio" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="to">TO:</label>
+                <div id="to" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="acoplador">Acoplador:</label>
+                <div id="acoplador" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="especificacao_acoplador">Especificação do Acoplador:</label>
+                <div id="especificacao_acoplador" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="pares_fibra">Pares de Fibra:</label>
+                <div id="pares_fibra" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="pigtail">Pigtail:</label>
+                <div id="pigtail" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="especificao_pigtail">Especificação do Pigtail:</label>
+                <div id="especificao_pigtail" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="cordao">Cordão:</label>
+                <div id="cordao" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="especificacao_cordao">Especificação do Cordão:</label>
+                <div id="especificacao_cordao" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="caixa_emenda">Caixa de Emenda:</label>
+                <div id="caixa_emenda" class="result-value"></div>
+            </div>
+        
+            <div class="result-group">
+                <label for="tubo">Tubo:</label>
+                <div id="tubo" class="result-value"></div>
+            </div>
+        </div>
 
-            
-                <div class="result-group">
-                    <label for="qCamera">Câmeras:</label>
-                    <div id="qCamera" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="qVoip">VoIPs:</label>
-                    <div id="qVoip" class="result-value"></div>
-                </div>
-            
-                <!-- Miscelânia UTP -->
-                <div class="result-group">
-                    <label for="etiquetasPortaPatchPanel">Etiquetas Porta Patch Panel:</label>
-                    <div id="etiquetasPortaPatchPanel" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="etiquetasPatchCable">Etiquetas Patch Cable:</label>
-                    <div id="etiquetasPatchCable" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="etiquetasPatchPanel">Etiquetas Patch Panel:</label>
-                    <div id="etiquetasPatchPanel" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="etiquetasTomadasEspelhos">Etiquetas Tomadas Espelhos:</label>
-                    <div id="etiquetasTomadasEspelhos" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="etiquetaCaboUTP">Etiqueta Cabo UTP:</label>
-                    <div id="etiquetaCaboUTP" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="abracadeiraPlastica">Abraçadeira Plástica:</label>
-                    <div id="abracadeiraPlastica" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="reguaOitoTomadas">Régua Oito Tomadas:</label>
-                    <div id="reguaOitoTomadas" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="reguaFechamento">Régua de Fechamento:</label>
-                    <div id="reguaFechamento" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="porcaGaiola">Porca Gaiola:</label>
-                    <div id="porcaGaiola" class="result-value"></div>
-                </div>
-            
-                <!-- Miscelânia Fibra -->
-                <div class="result-group">
-                    <label for="etiquetasRack">Etiquetas Rack:</label>
-                    <div id="etiquetasRack" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="etiquetasSwitchDio">Etiquetas Switch DIO:</label>
-                    <div id="etiquetasSwitchDio" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="abracadeiraVelcro">Abraçadeira de Velcro (rolo 3 metros):</label>
-                    <div id="abracadeiraVelcro" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="abracadeiraHellermann">Abraçadeira Hellermann (conjunto de 100 unidades):</label>
-                    <div id="abracadeiraHellermann" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="filtroDeLinha">Filtro de Linha:</label>
-                    <div id="filtroDeLinha" class="result-value"></div>
-                </div>
-            
-                <!-- Fibra óptica -->
-                <div class="result-group">
-                    <label for="paresFibra">Pares de Fibra FOMMIG 62,5nm:</label>
-                    <div id="paresFibra" class="result-value"></div>
-                </div>
+        <div id="sala-eqp">
+            <h2>Resultados para Sala de Equipamentos:</h2>
 
-                <div class="result-group">
-                    <label for="totalFibra">Tamanho total da fibra em metros:</label>
-                    <div id="totalFibra" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="switchDio">Switch para DIO:</label>
-                    <div id="switchDio" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="dio">DIO:</label>
-                    <div id="dio" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="organizadorCaboFrontalFibra">Organizador Cabo Frontal Fibra (1U):</label>
-                    <div id="organizadorCaboFrontalFibra" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="acopladores">Acopladores:</label>
-                    <div id="acopladores" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="pigtail">Pigtail:</label>
-                    <div id="pigtail" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="cordaoOptico">Cordão Óptico:</label>
-                    <div id="cordaoOptico" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="terminadorOptico">Terminador Óptico:</label>
-                    <div id="terminadorOptico" class="result-value"></div>
-                </div>
-            
-                <!-- Rack -->
-                <div class="result-group">
-                    <label for="tamanhoTotal">Tamanho do rack em U:</label>
-                    <div id="tamanhoTotal" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="nRack">Número de Racks:</label>
-                    <div id="nRack" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="seParesFibra">Pares de Fibra FOMMIG 62,5nm</label>
+                <div id="seParesFibra" class="result-value"></div>
             </div>
 
-            <div id="sala-eqp">
-                <h2>Resultados para Sala de Equipamentos:</h2>
-            
-                <div class="result-group">
-                    <label for="seParesFibra">Pares de Fibra FOMMIG 62,5nm</label>
-                    <div id="seParesFibra" class="result-value"></div>
-                </div>
-
-                <div class="result-group">
-                    <label for="seTotalInterno">Total de fibra interna em metros:</label>
-                    <div id="seTotalInterno" class="result-value"></div>
-                </div>
-
-                <div class="result-group">
-                    <label for="seTipoTransceiver">Padrão de transmissão da fibra interna: </label>
-                    <div id="seTipoTransceiver" class="result-value"></div>
-                </div>
-
-                <div class="result-group">
-                    <label for="seFibraTransceiver">Tipo de fibra interna: </label>
-                    <div id="seFibraTransceiver" class="result-value"></div>
-                </div>
-
-                <div class="result-group">
-                    <label for="seJanelaFibra">Janela de transmissão da fibra óptica interna: </label>
-                    <div id="seJanelaFibra" class="result-value"></div>
-                </div>
-
-                <div class="result-group">
-                    <label for="seTotalExterno">Total de fibra externa em metros (caso haja um nível de backbone maior que esse):</label>
-                    <div id="seTotalExterno" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="seSwitchDio">Switch:</label>
-                    <div id="seSwitchDio" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="seDio">DIO:</label>
-                    <div id="seDio" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="seOrganizadorCaboFrontalFibra">Organizador Cabo Frontal Fibra:</label>
-                    <div id="seOrganizadorCaboFrontalFibra" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="seAcopladores">Acopladores:</label>
-                    <div id="seAcopladores" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="sePigtail">Pigtail:</label>
-                    <div id="sePigtail" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="seCordaoOptico">Cordão Óptico:</label>
-                    <div id="seCordaoOptico" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="seTerminadorOptico">Terminador Óptico:</label>
-                    <div id="seTerminadorOptico" class="result-value"></div>
-                </div>
-        
-                <div class="result-group">
-                    <label for="seEtiquetasRack">Etiquetas Rack:</label>
-                    <div id="seEtiquetasRack" class="result-value"></div>
-                </div>
-        
-                <div class="result-group">
-                    <label for="seEtiquetasSwitchDio">Etiquetas Switch Dio:</label>
-                    <div id="seEtiquetasSwitchDio" class="result-value"></div>
-                </div>
-        
-                <div class="result-group">
-                    <label for="seAbracadeiraVelcro">Abraçadeira Velcro (rolo 3 metros):</label>
-                    <div id="seAbracadeiraVelcro" class="result-value"></div>
-                </div>
-        
-                <div class="result-group">
-                    <label for="seAbracadeiraHellermann">Abraçadeira Hellermann (conjunto de 100 unidades):</label>
-                    <div id="seAbracadeiraHellermann" class="result-value"></div>
-                </div>
-        
-                <div class="result-group">
-                    <label for="seFiltroDeLinha">Filtro de Linha:</label>
-                    <div id="seFiltroDeLinha" class="result-value"></div>
-                </div>
-        
-                <div class="result-group">
-                    <label for="sePorcaGaiola">Porca Gaiola:</label>
-                    <div id="sePorcaGaiola" class="result-value"></div>
-                </div>
-        
-                <div class="result-group">
-                    <label for="seReguaFechamento">Regua Fechamento:</label>
-                    <div id="seReguaFechamento" class="result-value"></div>
-                </div>
-        
-                <div class="result-group">
-                    <label for="seTamanho150">Tamanho do rack em U:</label>
-                    <div id="seTamanho150" class="result-value"></div>
-                </div>
-        
-                <div class="result-group">
-                    <label for="seNRacks">Número de Racks:</label>
-                    <div id="seNRacks" class="result-value"></div>
-                </div>
-            </div>
-            <div id="predio-principal">
-                <h2>Resultados para sala de equipamento principal:</h2>
-    
-                <div class="result-group">
-                    <label for="spParesFibra">Pares de Fibra FOMMIG 62,5nm</label>
-                    <div id="spParesFibra" class="result-value"></div>
-                </div>
-
-                <div class="result-group">
-                    <label for="spTotalFibra">Tamanho total de fibra óptica em metros: </label>
-                    <div id="spTotalFibra" class="result-value"></div>
-                </div>
-
-                <div class="result-group">
-                    <label for="spTipoTransceiver">Padrão de transmissão: </label>
-                    <div id="spTipoTransceiver" class="result-value"></div>
-                </div>
-
-                <div class="result-group">
-                    <label for="spFibraTransceiver">Tipo de fibra: </label>
-                    <div id="spFibraTransceiver" class="result-value"></div>
-                </div>
-
-                <div class="result-group">
-                    <label for="spJanelaFibra">Janela de transmissão da fibra óptica: </label>
-                    <div id="spJanelaFibra" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="spSwitchDio">Switch de fibra óptica 24 portas:</label>
-                    <div id="spSwitchDio" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="spDio">DIO de 24 entradas:</label>
-                    <div id="spDio" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="spOrganizadorCaboFrontalFibra">Organizador Cabo Frontal Fibra:</label>
-                    <div id="spOrganizadorCaboFrontalFibra" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="spAcopladores">Acopladores:</label>
-                    <div id="spAcopladores" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="spPigtail">Pigtail:</label>
-                    <div id="spPigtail" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="spCordaoOptico">Cordão Óptico:</label>
-                    <div id="spCordaoOptico" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="spTerminadorOptico">Terminador Óptico:</label>
-                    <div id="spTerminadorOptico" class="result-value"></div>
-                </div>
-
-                <div class="result-group">
-                    <label for="spEtiquetasRack">Etiquetas Rack:</label>
-                    <div id="spEtiquetasRack" class="result-value"></div>
-                </div>
-
-                <div class="result-group">
-                    <label for="spEtiquetasSwitchDio">Etiquetas Switch para fibra óptica:</label>
-                    <div id="spEtiquetasSwitchDio" class="result-value"></div>
-                </div>
-
-                <div class="result-group">
-                    <label for="spAbracadeiraVelcro">Abraçadeira Velcro (rolo 3 metros):</label>
-                    <div id="spAbracadeiraVelcro" class="result-value"></div>
-                </div>
-
-                <div class="result-group">
-                    <label for="spAbracadeiraHellermann">Abraçadeira Hellermann (conjunto de 100 unidades):</label>
-                    <div id="spAbracadeiraHellermann" class="result-value"></div>
-                </div>
-
-                <div class="result-group">
-                    <label for="spFiltroDeLinha">Filtro de Linha:</label>
-                    <div id="spFiltroDeLinha" class="result-value"></div>
-                </div>
-
-                <div class="result-group">
-                    <label for="spPorcaGaiola">Porca Gaiola:</label>
-                    <div id="spPorcaGaiola" class="result-value"></div>
-                </div>
-
-                <div class="result-group">
-                    <label for="spReguaFechamento">Regua Fechamento:</label>
-                    <div id="spReguaFechamento" class="result-value"></div>
-                </div>
-
-                <div class="result-group">
-                    <label for="spTamanho150">Tamanho do rack em U:</label>
-                    <div id="spTamanho150" class="result-value"></div>
-                </div>
-
-                <div class="result-group">
-                    <label for="spNRacks">Número de Racks:</label>
-                    <div id="spNRacks" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="seTotalInterno">Total de fibra interna em metros:</label>
+                <div id="seTotalInterno" class="result-value"></div>
             </div>
 
-            <div id="res-total">
-                <h2>Resultados Totais:</h2>
-    
-                <div class="result-group">
-                    <label for="tQPontos">Quantidade de Pontos de telecom:</label>
-                    <div id="tQPontos" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="tTomadas">Tomada RJ45 femêa categoria 6:</label>
-                    <div id="tTomadas" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="tEspelhos">Espelhos 4x4 - 2 furações/entradas:</label>
-                    <div id="tEspelhos" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="tPatchCordAzul">Patch Cord Azul cat.6:</label>
-                    <div id="tPatchCordAzul" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="tPatchCordVermelho">Patch Cord Vermelho cat.6:</label>
-                    <div id="tPatchCordVermelho" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="tPatchCordBranco">Patch Cord Branco cat.6:</label>
-                    <div id="tPatchCordBranco" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="tPatchPanel">Patch Panel cat.6, 24 portas (PPMH - Patch de malha Horizontal):</label>
-                    <div id="tPatchPanel" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="tSwitchRede">Switch Rede 24 portas:</label>
-                    <div id="tSwitchRede" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="tOrganizadorCaboFrontal">Organizador Cabo Frontal (1U):</label>
-                    <div id="tOrganizadorCaboFrontal" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="tTamanhoBandeja">Tamanho Bandeja fixa:</label>
-                    <div id="tTamanhoBandeja" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="tParesFibra">Pares de Fibra: </label>
-                    <div id="tParesFibra" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="seTipoTransceiver">Padrão de transmissão da fibra interna: </label>
+                <div id="seTipoTransceiver" class="result-value"></div>
+            </div>
 
-                <div class="result-group">
-                    <label for="tTotalFibra">Tamanho total fibra óptica em metros: </label>
-                    <div id="tTotalFibra" class="result-value"></div>
-                </div>
-                
-                <div class="result-group">
-                    <label for="tiTipoTransceiver">Padrão de transmissão da fibra interna: </label>
-                    <div id="tiTipoTransceiver" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="seFibraTransceiver">Tipo de fibra interna: </label>
+                <div id="seFibraTransceiver" class="result-value"></div>
+            </div>
 
-                <div class="result-group">
-                    <label for="tiFibraTransceiver">Tipo de fibra interna: </label>
-                    <div id="tiFibraTransceiver" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="seJanelaFibra">Janela de transmissão da fibra óptica interna: </label>
+                <div id="seJanelaFibra" class="result-value"></div>
+            </div>
 
-                <div class="result-group">
-                    <label for="tiJanelaFibra">Janela de transmissão da fibra óptica interna: </label>
-                    <div id="tiJanelaFibra" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="seTotalExterno">Total de fibra externa em metros (caso haja um nível de backbone maior que
+                    esse):</label>
+                <div id="seTotalExterno" class="result-value"></div>
+            </div>
 
-                <div class="result-group only-ext">
-                    <label for="tTipoTransceiver">Padrão de transmissão da fibra externa: </label>
-                    <div id="tTipoTransceiver" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="seSwitchDio">Switch:</label>
+                <div id="seSwitchDio" class="result-value"></div>
+            </div>
 
-                <div class="result-group only-ext">
-                    <label for="tFibraTransceiver">Tipo de fibra externa: </label>
-                    <div id="tFibraTransceiver" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="seDio">DIO:</label>
+                <div id="seDio" class="result-value"></div>
+            </div>
 
-                <div class="result-group only-ext">
-                    <label for="tJanelaFibra">Janela de transmissão da fibra óptica externa: </label>
-                    <div id="tJanelaFibra" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="tSwitchDio">Switch para fibra óptica de 24 portas:</label>
-                    <div id="tSwitchDio" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="tDio">DIO de 24 portas:</label>
-                    <div id="tDio" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="tOrganizadorCaboFrontalFibra">Organizador Cabo Frontal Fibra:</label>
-                    <div id="tOrganizadorCaboFrontalFibra" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="tAcopladores">Acopladores:</label>
-                    <div id="tAcopladores" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="tPigtail">Pigtail:</label>
-                    <div id="tPigtail" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="tCordaoOptico">Cordão Óptico:</label>
-                    <div id="tCordaoOptico" class="result-value"></div>
-                </div>
-            
-                <div class="result-group">
-                    <label for="tTerminadorOptico">Terminador Óptico:</label>
-                    <div id="tTerminadorOptico" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="seOrganizadorCaboFrontalFibra">Organizador Cabo Frontal Fibra:</label>
+                <div id="seOrganizadorCaboFrontalFibra" class="result-value"></div>
+            </div>
 
-                <div class="result-group">
-                    <label for="tEtiquetasRack">Etiquetas Rack:</label>
-                    <div id="tEtiquetasRack" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="seAcopladores">Acopladores:</label>
+                <div id="seAcopladores" class="result-value"></div>
+            </div>
 
-                <div class="result-group">
-                    <label for="tEtiquetasSwitchDio">Etiquetas Switch Dio:</label>
-                    <div id="tEtiquetasSwitchDio" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="sePigtail">Pigtail:</label>
+                <div id="sePigtail" class="result-value"></div>
+            </div>
 
-                <div class="result-group">
-                    <label for="tAbracadeiraVelcro">Abraçadeira Velcro (rolo 3 metros):</label>
-                    <div id="tAbracadeiraVelcro" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="seCordaoOptico">Cordão Óptico:</label>
+                <div id="seCordaoOptico" class="result-value"></div>
+            </div>
 
-                <div class="result-group">
-                    <label for="tAbracadeiraHellermann">Abraçadeira Hellermann (conjunto de 100 unidades):</label>
-                    <div id="tAbracadeiraHellermann" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="seTerminadorOptico">Terminador Óptico:</label>
+                <div id="seTerminadorOptico" class="result-value"></div>
+            </div>
 
-                <div class="result-group">
-                    <label for="tFiltroDeLinha">Filtro de Linha:</label>
-                    <div id="tFiltroDeLinha" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="seEtiquetasRack">Etiquetas Rack:</label>
+                <div id="seEtiquetasRack" class="result-value"></div>
+            </div>
 
-                <div class="result-group">
-                    <label for="tEtiquetasPortaPatchPanel">Etiquetas Porta Patch Panel:</label>
-                    <div id="tEtiquetasPortaPatchPanel" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="seEtiquetasSwitchDio">Etiquetas Switch Dio:</label>
+                <div id="seEtiquetasSwitchDio" class="result-value"></div>
+            </div>
 
-                <div class="result-group">
-                    <label for="tEtiquetasPatchCable">Etiquetas Patch Cable:</label>
-                    <div id="tEtiquetasPatchCable" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="seAbracadeiraVelcro">Abraçadeira Velcro (rolo 3 metros):</label>
+                <div id="seAbracadeiraVelcro" class="result-value"></div>
+            </div>
 
-                <div class="result-group">
-                    <label for="tEtiquetasPatchPanel">Etiquetas Patch Panel:</label>
-                    <div id="tEtiquetasPatchPanel" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="seAbracadeiraHellermann">Abraçadeira Hellermann (conjunto de 100 unidades):</label>
+                <div id="seAbracadeiraHellermann" class="result-value"></div>
+            </div>
 
-                <div class="result-group">
-                    <label for="tEtiquetasTomadasEspelhos">Etiquetas Tomadas e Espelhos:</label>
-                    <div id="tEtiquetasTomadasEspelhos" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="seFiltroDeLinha">Filtro de Linha:</label>
+                <div id="seFiltroDeLinha" class="result-value"></div>
+            </div>
 
-                <div class="result-group">
-                    <label for="tEtiquetaCaboUTP">Etiqueta Cabo UTP:</label>
-                    <div id="tEtiquetaCaboUTP" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="sePorcaGaiola">Porca Gaiola:</label>
+                <div id="sePorcaGaiola" class="result-value"></div>
+            </div>
 
-                <div class="result-group">
-                    <label for="tAbracadeiraPlastica">Abraçadeira Plástica:</label>
-                    <div id="tAbracadeiraPlastica" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="seReguaFechamento">Regua Fechamento:</label>
+                <div id="seReguaFechamento" class="result-value"></div>
+            </div>
 
-                <div class="result-group">
-                    <label for="tReguaOitoTomadas">Regua 8 Tomadas:</label>
-                    <div id="tReguaOitoTomadas" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="seTamanho150">Tamanho do rack em U:</label>
+                <div id="seTamanho150" class="result-value"></div>
+            </div>
 
-                <div class="result-group">
-                    <label for="tReguaFechamento">Regua Fechamento:</label>
-                    <div id="tReguaFechamento" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="seNRacks">Número de Racks:</label>
+                <div id="seNRacks" class="result-value"></div>
+            </div>
+        </div>
+        <div id="predio-principal">
+            <h2>Resultados para sala de equipamento principal:</h2>
 
-                <div class="result-group">
-                    <label for="tPorcaGaiola">Porca Gaiola:</label>
-                    <div id="tPorcaGaiola" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="spParesFibra">Pares de Fibra FOMMIG 62,5nm</label>
+                <div id="spParesFibra" class="result-value"></div>
+            </div>
 
-                <div class="result-group">
-                    <label>Tamanho dos racks de backbone em U:</label>
-                    <div id="tTamanhoRackFibra" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="spTotalFibra">Tamanho total de fibra óptica em metros: </label>
+                <div id="spTotalFibra" class="result-value"></div>
+            </div>
 
-                <div class="result-group">
-                    <label >Número de Racks de backbone:</label>
-                    <div id="tNRacksFibra" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="spTipoTransceiver">Padrão de transmissão: </label>
+                <div id="spTipoTransceiver" class="result-value"></div>
+            </div>
 
-                <div class="result-group">
-                    <label for="tTamanhoRackMalha">Tamanho Total dos Racks de malha horizontal em U:</label>
-                    <div id="tTamanhoRackMalha" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="spFibraTransceiver">Tipo de fibra: </label>
+                <div id="spFibraTransceiver" class="result-value"></div>
+            </div>
 
-                <div class="result-group">
-                    <label for="tNRacksMalha">Número de Racks:</label>
-                    <div id="tNRacksMalha" class="result-value"></div>
-                </div>
+            <div class="result-group">
+                <label for="spJanelaFibra">Janela de transmissão da fibra óptica: </label>
+                <div id="spJanelaFibra" class="result-value"></div>
+            </div>
+
+            <div class="result-group">
+                <label for="spSwitchDio">Switch de fibra óptica 24 portas:</label>
+                <div id="spSwitchDio" class="result-value"></div>
+            </div>
+
+            <div class="result-group">
+                <label for="spDio">DIO de 24 entradas:</label>
+                <div id="spDio" class="result-value"></div>
+            </div>
+
+            <div class="result-group">
+                <label for="spOrganizadorCaboFrontalFibra">Organizador Cabo Frontal Fibra:</label>
+                <div id="spOrganizadorCaboFrontalFibra" class="result-value"></div>
+            </div>
+
+            <div class="result-group">
+                <label for="spAcopladores">Acopladores:</label>
+                <div id="spAcopladores" class="result-value"></div>
+            </div>
+
+            <div class="result-group">
+                <label for="spPigtail">Pigtail:</label>
+                <div id="spPigtail" class="result-value"></div>
+            </div>
+
+            <div class="result-group">
+                <label for="spCordaoOptico">Cordão Óptico:</label>
+                <div id="spCordaoOptico" class="result-value"></div>
+            </div>
+
+            <div class="result-group">
+                <label for="spTerminadorOptico">Terminador Óptico:</label>
+                <div id="spTerminadorOptico" class="result-value"></div>
+            </div>
+
+            <div class="result-group">
+                <label for="spEtiquetasSwitchDio">Etiquetas Switch para fibra óptica:</label>
+                <div id="spEtiquetasSwitchDio" class="result-value"></div>
             </div>
 
         </div>
+
+        <div id="res-total">
+
+            <div class="result-group">
+                <label for="tParesFibra">Pares de Fibra: </label>
+                <div id="tParesFibra" class="result-value"></div>
+            </div>
+
+            <div class="result-group">
+                <label for="tTotalFibra">Tamanho total fibra óptica em metros: </label>
+                <div id="tTotalFibra" class="result-value"></div>
+            </div>
+
+            <div class="result-group">
+                <label for="tiTipoTransceiver">Padrão de transmissão da fibra interna: </label>
+                <div id="tiTipoTransceiver" class="result-value"></div>
+            </div>
+
+            <div class="result-group">
+                <label for="tiFibraTransceiver">Tipo de fibra interna: </label>
+                <div id="tiFibraTransceiver" class="result-value"></div>
+            </div>
+
+            <div class="result-group">
+                <label for="tiJanelaFibra">Janela de transmissão da fibra óptica interna: </label>
+                <div id="tiJanelaFibra" class="result-value"></div>
+            </div>
+
+            <div class="result-group only-ext">
+                <label for="tTipoTransceiver">Padrão de transmissão da fibra externa: </label>
+                <div id="tTipoTransceiver" class="result-value"></div>
+            </div>
+
+            <div class="result-group only-ext">
+                <label for="tFibraTransceiver">Tipo de fibra externa: </label>
+                <div id="tFibraTransceiver" class="result-value"></div>
+            </div>
+
+            <div class="result-group only-ext">
+                <label for="tJanelaFibra">Janela de transmissão da fibra óptica externa: </label>
+                <div id="tJanelaFibra" class="result-value"></div>
+            </div>
+
+            <div class="result-group">
+                <label for="tSwitchDio">Switch para fibra óptica de 24 portas:</label>
+                <div id="tSwitchDio" class="result-value"></div>
+            </div>
+
+            <div class="result-group">
+                <label for="tDio">DIO de 24 portas:</label>
+                <div id="tDio" class="result-value"></div>
+            </div>
+
+            <div class="result-group">
+                <label for="tOrganizadorCaboFrontalFibra">Organizador Cabo Frontal Fibra:</label>
+                <div id="tOrganizadorCaboFrontalFibra" class="result-value"></div>
+            </div>
+
+            <div class="result-group">
+                <label for="tAcopladores">Acopladores:</label>
+                <div id="tAcopladores" class="result-value"></div>
+            </div>
+
+            <div class="result-group">
+                <label for="tPigtail">Pigtail:</label>
+                <div id="tPigtail" class="result-value"></div>
+            </div>
+
+            <div class="result-group">
+                <label for="tCordaoOptico">Cordão Óptico:</label>
+                <div id="tCordaoOptico" class="result-value"></div>
+            </div>
+
+            <div class="result-group">
+                <label for="tTerminadorOptico">Terminador Óptico:</label>
+                <div id="tTerminadorOptico" class="result-value"></div>
+            </div>
+
+            <div class="result-group">
+                <label for="tEtiquetasRack">Etiquetas Rack:</label>
+                <div id="tEtiquetasRack" class="result-value"></div>
+            </div>
+
+            <div class="result-group">
+                <label for="tEtiquetasSwitchDio">Etiquetas Switch Dio:</label>
+                <div id="tEtiquetasSwitchDio" class="result-value"></div>
+            </div>
+
+        </div>
+
+    </div>
 
     <script src="other/js.js"></script>
     <script src="other/result.js"></script>
