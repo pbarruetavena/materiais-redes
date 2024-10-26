@@ -73,6 +73,8 @@ tipoBackbone = null;
 // Função para calcular os materiais
 function calcularMateriais() {
     tipoBackbone = parseInt(document.querySelector("#backbone").value, 10);
+    const containerRes = document.getElementById('container-res');
+    containerRes.classList.remove('oculto');
 
     // Pegando os valores dos inputs
     const nPav = parseInt(document.querySelector("#nPav").value, 10);
@@ -206,3 +208,17 @@ function calcularTotal(obj) {
 
     obj.total = total;
 }
+
+
+//texto do pavimento 
+function atualizarTexto() {
+    const nPav = document.getElementById("nPav").value;
+    const labelPavimento = document.querySelector('label[for="tPavimento"]');
+
+    if (nPav === "1") {
+      labelPavimento.textContent = "Distância do pavimento (em metros):";
+    } else {
+      labelPavimento.textContent = "Altura do pavimento (em metros):";
+    }
+}
+document.getElementById("nPav").addEventListener("input", atualizarTexto);

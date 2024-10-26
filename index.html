@@ -14,8 +14,8 @@
         <form id="lanForm">
             <label>Tipo de backbone: <i class="info-icon">ℹ</i>
                 <select id="backbone" name="backbone" required>
-                    <option value="1">Edifício (apenas primário)</option>
-                    <option value="2">Campus (primário e secundário)</option>
+                    <option value="1">Interno</option>
+                    <option value="2">Externo</option>
                 </select>
             </label>
             <div id="tooltip" class="tooltip-box">
@@ -26,7 +26,7 @@
                 prédio principal há a sala de equipamentos principal, por onde chega a conexão exterior.
             </div>
 
-            <label for="nPav">Número de pavimentos:
+            <label for="nPav" class="primario">Número de pavimentos:
                 <input type="number" id="nPav" name="nPav" min="1" required>
             </label>
 
@@ -38,9 +38,15 @@
                 <input type="number" id="tPavimento" name="tPavimento" min="1" required>
             </label>
 
-            <label class="secundario" id="predioLabel" for="pPredio" style="display: none;">Prédios (unidades de
-                backbone secundário):
+            <label class="secundario" id="predioLabel" for="pPredio" style="display: none;">Prédios:
                 <input type="number" id="pPredio" name="pPredio" min="1" required>
+            </label>
+
+            <label>
+                <select id="tipoAcoplador">
+                    <option value="duplo">LC - Duplo</option>
+                    <option value="simples">SC - Simples</option>
+                </select>
             </label>
 
 
@@ -51,7 +57,7 @@
     </div>
 
 
-    <div class="container-res">
+    <div id="container-res" class="oculto">
         <h2>Resultados</h2>
 
         <div id="res-central">
@@ -147,20 +153,12 @@
                 <div id="seTotalExterno" class="result-value"></div>
             </div>
 
-            <div class="result-group">
-                <label for="seSwitchDio">Switch:</label>
-                <div id="seSwitchDio" class="result-value"></div>
-            </div>
 
             <div class="result-group">
                 <label for="seDio">DIO:</label>
                 <div id="seDio" class="result-value"></div>
             </div>
 
-            <div class="result-group">
-                <label for="seOrganizadorCaboFrontalFibra">Organizador Cabo Frontal Fibra:</label>
-                <div id="seOrganizadorCaboFrontalFibra" class="result-value"></div>
-            </div>
 
             <div class="result-group">
                 <label for="seAcopladores">Acopladores:</label>
@@ -180,51 +178,6 @@
             <div class="result-group">
                 <label for="seTerminadorOptico">Terminador Óptico:</label>
                 <div id="seTerminadorOptico" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="seEtiquetasRack">Etiquetas Rack:</label>
-                <div id="seEtiquetasRack" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="seEtiquetasSwitchDio">Etiquetas Switch Dio:</label>
-                <div id="seEtiquetasSwitchDio" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="seAbracadeiraVelcro">Abraçadeira Velcro (rolo 3 metros):</label>
-                <div id="seAbracadeiraVelcro" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="seAbracadeiraHellermann">Abraçadeira Hellermann (conjunto de 100 unidades):</label>
-                <div id="seAbracadeiraHellermann" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="seFiltroDeLinha">Filtro de Linha:</label>
-                <div id="seFiltroDeLinha" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="sePorcaGaiola">Porca Gaiola:</label>
-                <div id="sePorcaGaiola" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="seReguaFechamento">Regua Fechamento:</label>
-                <div id="seReguaFechamento" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="seTamanho150">Tamanho do rack em U:</label>
-                <div id="seTamanho150" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="seNRacks">Número de Racks:</label>
-                <div id="seNRacks" class="result-value"></div>
             </div>
         </div>
         <div id="predio-principal">
@@ -256,18 +209,8 @@
             </div>
 
             <div class="result-group">
-                <label for="spSwitchDio">Switch de fibra óptica 24 portas:</label>
-                <div id="spSwitchDio" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
                 <label for="spDio">DIO de 24 entradas:</label>
                 <div id="spDio" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="spOrganizadorCaboFrontalFibra">Organizador Cabo Frontal Fibra:</label>
-                <div id="spOrganizadorCaboFrontalFibra" class="result-value"></div>
             </div>
 
             <div class="result-group">
@@ -288,11 +231,6 @@
             <div class="result-group">
                 <label for="spTerminadorOptico">Terminador Óptico:</label>
                 <div id="spTerminadorOptico" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="spEtiquetasSwitchDio">Etiquetas Switch para fibra óptica:</label>
-                <div id="spEtiquetasSwitchDio" class="result-value"></div>
             </div>
 
         </div>
@@ -340,18 +278,8 @@
             </div>
 
             <div class="result-group">
-                <label for="tSwitchDio">Switch para fibra óptica de 24 portas:</label>
-                <div id="tSwitchDio" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
                 <label for="tDio">DIO de 24 portas:</label>
                 <div id="tDio" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="tOrganizadorCaboFrontalFibra">Organizador Cabo Frontal Fibra:</label>
-                <div id="tOrganizadorCaboFrontalFibra" class="result-value"></div>
             </div>
 
             <div class="result-group">
@@ -372,16 +300,6 @@
             <div class="result-group">
                 <label for="tTerminadorOptico">Terminador Óptico:</label>
                 <div id="tTerminadorOptico" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="tEtiquetasRack">Etiquetas Rack:</label>
-                <div id="tEtiquetasRack" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="tEtiquetasSwitchDio">Etiquetas Switch Dio:</label>
-                <div id="tEtiquetasSwitchDio" class="result-value"></div>
             </div>
 
         </div>
