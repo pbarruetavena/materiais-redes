@@ -228,12 +228,12 @@ function calcularTotal(obj) {
 //texto do pavimento 
 function atualizarTexto() {
     const nPav = document.getElementById("nPav").value;
-    const labelPavimento = document.querySelector('label[for="tPavimento"]');
+    const labelPavimento = document.querySelector('label[for="nPav"]');
 
     if (nPav === "1") {
-        labelPavimento.textContent = "Distância do pavimento (em metros):";
+        labelPavimento.textContent = 'Distância do pavimento (em metros): <input type="number" id="nPav" name="nPav" min="1" required>';
     } else {
-        labelPavimento.textContent = "Altura do pavimento (em metros):";
+        labelPavimento.textContent = 'Altura do pavimento (em metros): <input type="number" id="nPav" name="nPav" min="1" required>' ;
     }
 }
 document.getElementById("nPav").addEventListener("input", atualizarTexto);
