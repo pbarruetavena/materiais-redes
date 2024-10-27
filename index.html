@@ -34,7 +34,7 @@
                 <input type="number" id="pfibras" name="pfibras" min="1" required>
             </label>
 
-            <label for="tPavimento">Altura do pavimento (em metros):
+            <label for="tPavimento"><div id="txtPav">Altura do pavimento (em metros):</div>
                 <input type="number" id="tPavimento" name="tPavimento" min="1" required>
             </label>
 
@@ -49,39 +49,17 @@
                 </select>
             </label>
 
-            <label for="fibraSEQ" class="primario">Fibra na SEQ*:
-                <select id="fibraSEQinterno" name="fibraSEQ">
+            <label for="fibraprimaria" class="primario">Tipo de fibra:
+                <select id="fibraprimaria" name="fibraSEQ">
                     <option value="monomodo">Monomodo 9µm</option>
                     <option value="multimodo50">Multimodo 50µm</option>
                     <option value="multimodo625">Multimodo 62.5µm</option>
                 </select>
             </label>
 
-            <label for="fibraSETs" class="primario">Fibra nas SETs:
-                <select id="fibraSETsinterno" name="fibraSETs">
-                    <option value="monomodo">Monomodo 9µm</option>
-                    <option value="multimodo50">Multimodo 50µm</option>
-                    <option value="multimodo625">Multimodo 62.5µm</option>
-                </select>
-            </label>
 
-            <label for="fibraSEQ" class="secundario">Fibra na SEQ primária:
-                <select id="fibraSEQprimariaexterno" name="fibraSEQ">
-                    <option value="monomodo">Monomodo 9µm</option>
-                    <option value="multimodo50">Multimodo 50µm</option>
-                    <option value="multimodo625">Multimodo 62.5µm</option>
-                </select>
-            </label>
-            <label for="fibraSEQ" class="secundario">Fibra na SEQs secundárias:
-                <select id="fibraSEQsecundariaexterna" name="fibraSEQ">
-                    <option value="monomodo">Monomodo 9µm</option>
-                    <option value="multimodo50">Multimodo 50µm</option>
-                    <option value="multimodo625">Multimodo 62.5µm</option>
-                </select>
-            </label>
-
-            <label for="fibraSETs" class="secundario">Fibra nas SETs:
-                <select id="fibraSETsecundaria" name="fibraSETs">
+            <label for="fibrasecundaria" class="secundario">Tipo de Fibra:
+                <select id="fibrasecundaria" name="fibraSEQ">
                     <option value="monomodo">Monomodo 9µm</option>
                     <option value="multimodo50">Multimodo 50µm</option>
                     <option value="multimodo625">Multimodo 62.5µm</option>

@@ -94,7 +94,7 @@ function calcularMateriais() {
     if (tipoBackbone == 1) {
 
         primario.central.pares_fibra = pfibras;
-        primario.especificacao_fibra = document.getElementById("fibraSEQinterno").value;
+        primario.especificacao_fibra = document.getElementById("fibraprimaria").value;
         const especificacaoTamanhoAcopladores = null
         if (primario.especificacao_fibra == 'monomodo')
             especificacaoTamanhoAcopladores = + " 9 X 125µm"
@@ -149,7 +149,14 @@ function calcularMateriais() {
 
 
         secundario.central.pares_fibra = pfibras * pPredio;
-        secundario.central.especificacao_fibra = "Fibra SM (9x125µm) - Tight Buffer";
+        secundario.central.especificacao_fibra = document.getElementById("fibraprimaria").value;
+        const especificacaoTamanhoAcopladores = null
+        if (primario.especificacao_fibra == 'monomodo')
+            especificacaoTamanhoAcopladores = + " 9 X 125µm"
+        else if (primario.especificacao_fibra == 'multimodo50')
+            especificacaoTamanhoAcopladores = + " 50 X 125µm"
+        if (primario.especificacao_fibra == 'multimodo625')
+            especificacaoTamanhoAcopladores = + " 62.5 X 125µm"
 
 
         secundario.central.pigtail = pfibras * 2 * pPredio;
@@ -228,12 +235,12 @@ function calcularTotal(obj) {
 //texto do pavimento 
 function atualizarTexto() {
     const nPav = document.getElementById("nPav").value;
-    const labelPavimento = document.querySelector('label[for="nPav"]');
+    const labelPavimento = document.querySelector('#txtPav');
 
     if (nPav === "1") {
-        labelPavimento.textContent = 'Distância do pavimento (em metros): <input type="number" id="nPav" name="nPav" min="1" required>';
+        labelPavimento.textContent = 'Distância do pavimento (em metros):';
     } else {
-        labelPavimento.textContent = 'Altura do pavimento (em metros): <input type="number" id="nPav" name="nPav" min="1" required>' ;
+        labelPavimento.textContent = 'Altura do pavimento (em metros):';
     }
 }
 document.getElementById("nPav").addEventListener("input", atualizarTexto);
