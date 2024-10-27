@@ -149,11 +149,11 @@ function calcularMateriais() {
         secundario.central.pares_fibra = pfibras * pPredio;
         secundario.central.especificacao_fibra = document.getElementById("fibrasecundaria").value;
         var especificacaoTamanhoAcopladores = "";
-        if (primario.especificacao_fibra == 'monomodo')
+        if (secundario.especificacao_fibra == 'monomodo')
             especificacaoTamanhoAcopladores =  " 9 X 125µm";
-        else if (primario.especificacao_fibra == 'multimodo50')
+        else if (secundario.especificacao_fibra == 'multimodo50')
             especificacaoTamanhoAcopladores =  " 50 X 125µm";
-        if (primario.especificacao_fibra == 'multimodo625')
+        if (secundario.especificacao_fibra == 'multimodo625')
             especificacaoTamanhoAcopladores =  " 62.5 X 125µm";
 
 
