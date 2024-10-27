@@ -49,6 +49,44 @@
                 </select>
             </label>
 
+            <label for="fibraSEQ" class="primario">Fibra na SEQ*:
+                <select id="fibraSEQinterno" name="fibraSEQ">
+                    <option value="monomodo">Monomodo 9µm</option>
+                    <option value="multimodo50">Multimodo 50µm</option>
+                    <option value="multimodo625">Multimodo 62.5µm</option>
+                </select>
+            </label>
+
+            <label for="fibraSETs" class="primario">Fibra nas SETs:
+                <select id="fibraSETsinterno" name="fibraSETs">
+                    <option value="monomodo">Monomodo 9µm</option>
+                    <option value="multimodo50">Multimodo 50µm</option>
+                    <option value="multimodo625">Multimodo 62.5µm</option>
+                </select>
+            </label>
+
+            <label for="fibraSEQ" class="secundario">Fibra na SEQ primária:
+                <select id="fibraSEQprimariaexterno" name="fibraSEQ">
+                    <option value="monomodo">Monomodo 9µm</option>
+                    <option value="multimodo50">Multimodo 50µm</option>
+                    <option value="multimodo625">Multimodo 62.5µm</option>
+                </select>
+            </label>
+            <label for="fibraSEQ" class="secundario">Fibra na SEQs secundárias:
+                <select id="fibraSEQsecundariaexterna" name="fibraSEQ">
+                    <option value="monomodo">Monomodo 9µm</option>
+                    <option value="multimodo50">Multimodo 50µm</option>
+                    <option value="multimodo625">Multimodo 62.5µm</option>
+                </select>
+            </label>
+
+            <label for="fibraSETs" class="secundario">Fibra nas SETs:
+                <select id="fibraSETsecundaria" name="fibraSETs">
+                    <option value="monomodo">Monomodo 9µm</option>
+                    <option value="multimodo50">Multimodo 50µm</option>
+                    <option value="multimodo625">Multimodo 62.5µm</option>
+                </select>
+            </label>
 
             <button type="button" onclick="calcularMateriais()">Calcular Materiais</button>
         </form>
@@ -62,57 +100,57 @@
 
         <div id="res-central">
             <h2>Backbone primário:</h2>
-        
+
             <div class="result-group">
                 <label for="dio">DIO:</label>
                 <div id="dio" class="result-value"></div>
             </div>
-        
+
             <div class="result-group">
                 <label for="to">TO:</label>
                 <div id="to" class="result-value"></div>
             </div>
-        
+
             <div class="result-group">
                 <label for="acoplador">Acoplador:</label>
                 <div id="acoplador" class="result-value"></div>
             </div>
-        
+
             <div class="result-group">
                 <label for="especificacao_acoplador">Especificação do Acoplador:</label>
                 <div id="especificacao_acoplador" class="result-value"></div>
             </div>
-        
+
             <div class="result-group">
                 <label for="pares_fibra">Pares de Fibra:</label>
                 <div id="pares_fibra" class="result-value"></div>
             </div>
-        
+
             <div class="result-group">
                 <label for="pigtail">Pigtail:</label>
                 <div id="pigtail" class="result-value"></div>
             </div>
-        
+
             <div class="result-group">
                 <label for="especificao_pigtail">Especificação do Pigtail:</label>
                 <div id="especificao_pigtail" class="result-value"></div>
             </div>
-        
+
             <div class="result-group">
                 <label for="cordao">Cordão:</label>
                 <div id="cordao" class="result-value"></div>
             </div>
-        
+
             <div class="result-group">
                 <label for="especificacao_cordao">Especificação do Cordão:</label>
                 <div id="especificacao_cordao" class="result-value"></div>
             </div>
-        
+
             <div class="result-group">
                 <label for="caixa_emenda">Caixa de Emenda:</label>
                 <div id="caixa_emenda" class="result-value"></div>
             </div>
-        
+
             <div class="result-group">
                 <label for="tubo">Tubo:</label>
                 <div id="tubo" class="result-value"></div>
@@ -120,188 +158,62 @@
         </div>
 
         <div id="sala-eqp">
-            <h2>Resultados para Sala de Equipamentos:</h2>
+            <h2>Backbone Secundário:</h2>
 
             <div class="result-group">
-                <label for="seParesFibra">Pares de Fibra FOMMIG 62,5nm</label>
-                <div id="seParesFibra" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="seTotalInterno">Total de fibra interna em metros:</label>
-                <div id="seTotalInterno" class="result-value"></div>
+                <label for="dio">DIO:</label>
+                <div id="dio" class="result-value"></div>
             </div>
 
             <div class="result-group">
-                <label for="seTipoTransceiver">Padrão de transmissão da fibra interna: </label>
-                <div id="seTipoTransceiver" class="result-value"></div>
+                <label for="to">TO:</label>
+                <div id="to" class="result-value"></div>
             </div>
 
             <div class="result-group">
-                <label for="seFibraTransceiver">Tipo de fibra interna: </label>
-                <div id="seFibraTransceiver" class="result-value"></div>
+                <label for="acoplador">Acoplador:</label>
+                <div id="acoplador" class="result-value"></div>
             </div>
 
             <div class="result-group">
-                <label for="seJanelaFibra">Janela de transmissão da fibra óptica interna: </label>
-                <div id="seJanelaFibra" class="result-value"></div>
+                <label for="especificacao_acoplador">Especificação do Acoplador:</label>
+                <div id="especificacao_acoplador" class="result-value"></div>
             </div>
 
             <div class="result-group">
-                <label for="seTotalExterno">Total de fibra externa em metros (caso haja um nível de backbone maior que
-                    esse):</label>
-                <div id="seTotalExterno" class="result-value"></div>
-            </div>
-
-
-            <div class="result-group">
-                <label for="seDio">DIO:</label>
-                <div id="seDio" class="result-value"></div>
-            </div>
-
-
-            <div class="result-group">
-                <label for="seAcopladores">Acopladores:</label>
-                <div id="seAcopladores" class="result-value"></div>
+                <label for="pares_fibra">Pares de Fibra:</label>
+                <div id="pares_fibra" class="result-value"></div>
             </div>
 
             <div class="result-group">
-                <label for="sePigtail">Pigtail:</label>
-                <div id="sePigtail" class="result-value"></div>
+                <label for="pigtail">Pigtail:</label>
+                <div id="pigtail" class="result-value"></div>
             </div>
 
             <div class="result-group">
-                <label for="seCordaoOptico">Cordão Óptico:</label>
-                <div id="seCordaoOptico" class="result-value"></div>
+                <label for="especificao_pigtail">Especificação do Pigtail:</label>
+                <div id="especificao_pigtail" class="result-value"></div>
             </div>
 
             <div class="result-group">
-                <label for="seTerminadorOptico">Terminador Óptico:</label>
-                <div id="seTerminadorOptico" class="result-value"></div>
-            </div>
-        </div>
-        <div id="predio-principal">
-            <h2>Resultados para sala de equipamento principal:</h2>
-
-            <div class="result-group">
-                <label for="spParesFibra">Pares de Fibra FOMMIG 62,5nm</label>
-                <div id="spParesFibra" class="result-value"></div>
+                <label for="cordao">Cordão:</label>
+                <div id="cordao" class="result-value"></div>
             </div>
 
             <div class="result-group">
-                <label for="spTotalFibra">Tamanho total de fibra óptica em metros: </label>
-                <div id="spTotalFibra" class="result-value"></div>
+                <label for="especificacao_cordao">Especificação do Cordão:</label>
+                <div id="especificacao_cordao" class="result-value"></div>
             </div>
 
             <div class="result-group">
-                <label for="spTipoTransceiver">Padrão de transmissão: </label>
-                <div id="spTipoTransceiver" class="result-value"></div>
+                <label for="caixa_emenda">Caixa de Emenda:</label>
+                <div id="caixa_emenda" class="result-value"></div>
             </div>
 
             <div class="result-group">
-                <label for="spFibraTransceiver">Tipo de fibra: </label>
-                <div id="spFibraTransceiver" class="result-value"></div>
+                <label for="tubo">Tubo:</label>
+                <div id="tubo" class="result-value"></div>
             </div>
-
-            <div class="result-group">
-                <label for="spJanelaFibra">Janela de transmissão da fibra óptica: </label>
-                <div id="spJanelaFibra" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="spDio">DIO de 24 entradas:</label>
-                <div id="spDio" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="spAcopladores">Acopladores:</label>
-                <div id="spAcopladores" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="spPigtail">Pigtail:</label>
-                <div id="spPigtail" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="spCordaoOptico">Cordão Óptico:</label>
-                <div id="spCordaoOptico" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="spTerminadorOptico">Terminador Óptico:</label>
-                <div id="spTerminadorOptico" class="result-value"></div>
-            </div>
-
-        </div>
-
-        <div id="res-total">
-
-            <div class="result-group">
-                <label for="tParesFibra">Pares de Fibra: </label>
-                <div id="tParesFibra" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="tTotalFibra">Tamanho total fibra óptica em metros: </label>
-                <div id="tTotalFibra" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="tiTipoTransceiver">Padrão de transmissão da fibra interna: </label>
-                <div id="tiTipoTransceiver" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="tiFibraTransceiver">Tipo de fibra interna: </label>
-                <div id="tiFibraTransceiver" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="tiJanelaFibra">Janela de transmissão da fibra óptica interna: </label>
-                <div id="tiJanelaFibra" class="result-value"></div>
-            </div>
-
-            <div class="result-group only-ext">
-                <label for="tTipoTransceiver">Padrão de transmissão da fibra externa: </label>
-                <div id="tTipoTransceiver" class="result-value"></div>
-            </div>
-
-            <div class="result-group only-ext">
-                <label for="tFibraTransceiver">Tipo de fibra externa: </label>
-                <div id="tFibraTransceiver" class="result-value"></div>
-            </div>
-
-            <div class="result-group only-ext">
-                <label for="tJanelaFibra">Janela de transmissão da fibra óptica externa: </label>
-                <div id="tJanelaFibra" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="tDio">DIO de 24 portas:</label>
-                <div id="tDio" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="tAcopladores">Acopladores:</label>
-                <div id="tAcopladores" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="tPigtail">Pigtail:</label>
-                <div id="tPigtail" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="tCordaoOptico">Cordão Óptico:</label>
-                <div id="tCordaoOptico" class="result-value"></div>
-            </div>
-
-            <div class="result-group">
-                <label for="tTerminadorOptico">Terminador Óptico:</label>
-                <div id="tTerminadorOptico" class="result-value"></div>
-            </div>
-
         </div>
 
     </div>

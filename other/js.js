@@ -1,6 +1,6 @@
 // Definindo o objeto para armazenar os dados
 
- primario = {
+primario = {
     tamanho_fibra: null,
     especificacao_fibra: null,
     central: {
@@ -32,9 +32,9 @@
     total: {
 
     }
- }
+}
 
- secundario = {
+secundario = {
     central: {
         dio: null,
         to: null,
@@ -65,7 +65,7 @@
         caixa_emenda: null,
         tubo: null,
     }
- }
+}
 
 
 tipoBackbone = null;
@@ -77,77 +77,92 @@ function calcularMateriais() {
     containerRes.classList.remove('oculto');
 
     // Pegando os valores dos inputs
-    const nPav = parseInt(document.querySelector("#nPav").value, 10);
-    const pfibras = parseInt(document.querySelector("#pfibras").value, 10);
-    const tPavimento = parseInt(document.querySelector("#tPavimento").value, 10);
-    const pPredio = parseInt(document.querySelector("#pPredio").value, 10);
+    const nPav = document.querySelector("#nPav").value
+    if (nPav != null) {
+        nPav = parseInt(nPav, 10);
+    }
+    const pfibrasValue = document.querySelector("#pfibras").value;
+    const pfibras = pfibrasValue != null ? parseInt(pfibrasValue, 10) : null;
+    const tPavimentoValue = document.querySelector("#tPavimento").value;
+    const tPavimento = tPavimentoValue != null ? parseInt(tPavimentoValue, 10) : null;
+    const pPredioValue = document.querySelector("#pPredio").value;
+    const pPredio = pPredioValue != null ? parseInt(pPredioValue, 10) : null;
+    const tipoInput = document.querySelector('#tipoAcoplador').value;
 
 
-    
+
     if (tipoBackbone == 1) {
-        
+
         primario.central.pares_fibra = pfibras;
-        primario.especificacao_fibra = "Fibra MM 50x125µm - Tight Buffer";
+        primario.especificacao_fibra = document.getElementById("fibraSEQinterno").value;
+        const especificacaoTamanhoAcopladores = null
+        if (primario.especificacao_fibra == 'monomodo')
+            especificacaoTamanhoAcopladores = + " 9 X 125µm"
+        else if (primario.especificacao_fibra == 'multimodo50')
+            especificacaoTamanhoAcopladores = + " 50 X 125µm"
+        if (primario.especificacao_fibra == 'multimodo625')
+            especificacaoTamanhoAcopladores = + " 62.5 X 125µm"
+
         var tamanho = 0;
-        for(var i = 1; i <= nPav; i++) {
-            tamanho += (i+1)*tPavimento;
+        for (var i = 1; i <= nPav; i++) {
+            tamanho += (i + 1) * tPavimento;
         }
         primario.tamanho_fibra = tamanho * 1.2;
-        primario.central.dio = Math.ceil(pfibras*nPav / 12);
-        primario.central.acoplador = pfibras*nPav;
-        primario.central.especificacao_acoplador = "Acoplador Duplo LC (50x125µm) MM";
-        primario.central.pigtail = pfibras*2*nPav;
-        primario.central.especificao_pigtail = "Pigtail MM (50x125µm) - LC - Simples - 1m";
-        primario.central.cordao = pfibras*nPav;
-        primario.central.especificacao_cordao = "Cordão Óptico MM (50x125µm) - LC - Duplo - 3m"
-        primario.central.caixa_emenda = Math.ceil(pfibras*nPav/12);
-        primario.central.tubo = Math.ceil(pfibras*2/18);
-        
-        if(pfibras <= 4) {
+        primario.central.dio = Math.ceil(pfibras * nPav / 12);
+        primario.central.acoplador = pfibras * nPav;
+        if (tipoAcoplador == 'duplo') {
+            primario.central.especificacao_acoplador = "Acoplador Duplo LC " + especificacaoTamanhoAcopladores;
+            primario.central.pigtail = pfibras * nPav;
+        } else {
+            primario.central.especificacao_acoplador = "Acoplador Simples LC " + especificacaoTamanhoAcopladores;
+            primario.central.pigtail = pfibras * 2 * nPav;
+        }
+        primario.central.especificao_pigtail = "Pigtail LC - Simples - 1m " + especificacaoTamanhoAcopladores;
+        primario.central.cordao = pfibras * nPav;
+        primario.central.especificacao_cordao = "Cordão Óptico - LC - Duplo - 3m " + especificacaoTamanhoAcopladores;
+        primario.central.caixa_emenda = Math.ceil(pfibras * nPav / 12);
+        primario.central.tubo = Math.ceil(pfibras * 2 / 18);
+
+        if (pfibras <= 4) {
             primario.periferico.to = 1;
             primario.periferico.pigtail = pfibras * nPav;
-            primario.periferico.especificao_pigtail = "Pigtail MM (50x125µm) - LC - Duplo - 1m";
-            primario.periferico.tubo = Math.ceil(pfibras*2/18);
+            primario.periferico.especificao_pigtail = "Pigtail - LC - Duplo - 1m " + especificacaoTamanhoAcopladores;
+            primario.periferico.tubo = Math.ceil(pfibras * 2 / 18);
             primario.periferico.cordao = 0;
             primario.periferico.acoplador = 0;
             primario.periferico.caixa_emenda = 0;
         } else {
-            primario.periferico.dio = Math.ceil(pfibras*nPav / 12);
-            primario.periferico.acoplador = pfibras*nPav;
-            primario.periferico.especificacao_acoplador = "Acoplador Duplo LC (50x125µm) MM";
-            primario.periferico.pigtail = pfibras*2*nPav;
-            primario.periferico.especificao_pigtail = "Pigtail MM (50x125µm) - LC - Simples - 1m";
-            primario.periferico.cordao = pfibras*nPav;
-            primario.periferico.especificacao_cordao = "Cordão Óptico MM (50x125µm) - LC - Duplo - 3m"
-            primario.periferico.caixa_emenda = Math.ceil(pfibras*nPav/12);
-            primario.periferico.tubo = Math.ceil(pfibras*2/18);
+            primario.periferico.dio = Math.ceil(pfibras * nPav / 12);
+            primario.periferico.acoplador = pfibras * nPav;
+            primario.periferico.especificacao_acoplador = "Acoplador Duplo LC " + especificacaoTamanhoAcopladores;
+            primario.periferico.pigtail = pfibras * 2 * nPav;
+            primario.periferico.especificao_pigtail = "Pigtail - LC - Simples - 1m " + especificacaoTamanhoAcopladores;
+            primario.periferico.cordao = pfibras * nPav;
+            primario.periferico.especificacao_cordao = "Cordão Óptico - LC - Duplo - 3m " + especificacaoTamanhoAcopladores;
+            primario.periferico.caixa_emenda = Math.ceil(pfibras * nPav / 12);
+            primario.periferico.tubo = Math.ceil(pfibras * 2 / 18);
         }
 
 
     } else { // tipo backbone = 2
-        
-        const secundarioHtml = document.querySelectorAll;
 
-        for(i = 0; i<secundarioHtml.length; i++){
-            secundarioHtml[i].style.display = 'block';
-        }
 
 
         secundario.central.pares_fibra = pfibras * pPredio;
         secundario.central.especificacao_fibra = "Fibra SM (9x125µm) - Tight Buffer";
-        
+
 
         secundario.central.pigtail = pfibras * 2 * pPredio;
-        secundario.central.acoplador = (pfibras * 2 * pPredio)/2;
-        secundario.central.especificacao_acoplador = "Acoplador SM (9x125µm) - LC - Duplo "
-        secundario.central.cordao = (pfibras * 2 * pPredio)/2;
-        secundario.central.especificacao_cordao = "Cordão Óptico SM (9x125µm) - LC - Duplo - 3m"
-        
-        secundario.central.dio = Math.ceil(pfibras * nPredio/12);
+        secundario.central.acoplador = (pfibras * 2 * pPredio) / 2;
+        secundario.central.especificacao_acoplador = "Acoplador - LC - Duplo ";
+        secundario.central.cordao = (pfibras * 2 * pPredio) / 2;
+        secundario.central.especificacao_cordao = "Cordão Óptico - LC - Duplo - 3m ";
+
+        secundario.central.dio = Math.ceil(pfibras * nPredio / 12);
         secundario.central.caixa_emenda = secundario.central.dio * 2;
 
-        secundario.central.tubo = Math.ceil(pfibras*2*pPredio/18);
-        
+        secundario.central.tubo = Math.ceil(pfibras * 2 * pPredio / 18);
+
     }
 
 
@@ -165,8 +180,8 @@ infoIcon.addEventListener('mouseenter', function () {
 });
 
 infoIcon.addEventListener('mousemove', function (event) {
-    tooltip.style.top = (event.clientY - tooltip.offsetHeight - 10) + 'px'; // 10px acima do cursor
-    tooltip.style.left = (event.clientX) + 'px'; // Centraliza horizontalmente
+    tooltip.style.top = (event.clientY - tooltip.offsetHeight - 10) + 'px';
+    tooltip.style.left = (event.clientX) + 'px';
 });
 
 infoIcon.addEventListener('mouseleave', function () {
@@ -179,7 +194,7 @@ document.getElementById('backbone').addEventListener('change', function () {
     const valor = this.value;
     const elementosPrimario = document.querySelectorAll('.primario');
     const elementosSecundario = document.querySelectorAll('.secundario');
-    
+
     const mostrar = (elementos, exibir) => {
         elementos.forEach(element => {
             element.style.display = exibir ? 'block' : 'none';
@@ -202,7 +217,7 @@ function calcularTotal(obj) {
     for (const chave in central) {
         const valorCentral = central[chave] || 0;
         const valorPeriferico = periferico[chave] || 0;
-        
+
         total[chave] = valorCentral + valorPeriferico;
     }
 
@@ -216,9 +231,9 @@ function atualizarTexto() {
     const labelPavimento = document.querySelector('label[for="tPavimento"]');
 
     if (nPav === "1") {
-      labelPavimento.textContent = "Distância do pavimento (em metros):";
+        labelPavimento.textContent = "Distância do pavimento (em metros):";
     } else {
-      labelPavimento.textContent = "Altura do pavimento (em metros):";
+        labelPavimento.textContent = "Altura do pavimento (em metros):";
     }
 }
 document.getElementById("nPav").addEventListener("input", atualizarTexto);
