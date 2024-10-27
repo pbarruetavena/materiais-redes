@@ -127,7 +127,7 @@ function calcularMateriais() {
 
         if (pfibras <= 4) {
             primario.periferico.to = 1;
-            if (tipoIput == 'duplo') {
+            if (tipoInput == 'duplo') {
                 primario.periferico.especificacao_acoplador = "Acoplador Duplo LC " + especificacaoTamanhoAcopladores;
                 primario.periferico.pigtail = pfibras * nPav;
                 primario.periferico.especificao_pigtail = "Pigtail - LC - Duplo - 1m " + especificacaoTamanhoAcopladores;
@@ -175,7 +175,7 @@ function calcularMateriais() {
         if (secundario.especificacao_fibra == 'multimodo625')
             especificacaoTamanhoAcopladores = " 62.5 X 125µm";
 
-        if (tipoAcoplador == 'duplo') {
+        if (tipoInput == 'duplo') {
             secundario.central.pigtail = pfibras * 2 * pPredio;
             secundario.central.acoplador = (pfibras * 2 * pPredio) / 2;
             secundario.central.especificao_pigtail = "Pigtail - LC - Simples - 1m " + especificacaoTamanhoAcopladores;
