@@ -164,7 +164,8 @@ function calcularMateriais() {
     } else { // tipo backbone = 2
 
 
-
+        var tamanho = pPredio * tPavimento;
+        secundario.tamanho_fibra = tamanho * 1.2;
         secundario.central.pares_fibra = pfibras * pPredio;
         secundario.central.especificacao_fibra = document.getElementById("fibrasecundaria").value;
         var especificacaoTamanhoAcopladores = "";
@@ -238,7 +239,7 @@ document.getElementById('backbone').addEventListener('change', function () {
         mostrar(elementosSecundario, true);
         mostrar(elementosPrimario, false);
         const labelPavimento = document.querySelector('#txtPav');
-        labelPavimento.textContent = 'Distância do pavimento (em metros):';
+        labelPavimento.textContent = 'Distância do prédio (em metros):';
     } else if (valor === '1') {
         mostrar(elementosPrimario, true);
         mostrar(elementosSecundario, false);
