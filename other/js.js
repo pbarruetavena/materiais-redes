@@ -93,13 +93,13 @@ function calcularMateriais() {
 
         primario.central.pares_fibra = pfibras;
         primario.especificacao_fibra = document.getElementById("fibraprimaria").value;
-        var especificacaoTamanhoAcopladores = null
+        var especificacaoTamanhoAcopladores = "";
         if (primario.especificacao_fibra == 'monomodo')
-            especificacaoTamanhoAcopladores = + " 9 X 125µm"
+            especificacaoTamanhoAcopladores = " 9 X 125µm";
         else if (primario.especificacao_fibra == 'multimodo50')
-            especificacaoTamanhoAcopladores = + " 50 X 125µm"
+            especificacaoTamanhoAcopladores = " 50 X 125µm";
         if (primario.especificacao_fibra == 'multimodo625')
-            especificacaoTamanhoAcopladores = + " 62.5 X 125µm"
+            especificacaoTamanhoAcopladores = " 62.5 X 125µm";
 
         var tamanho = 0;
         for (var i = 1; i <= nPav; i++) {
@@ -147,14 +147,14 @@ function calcularMateriais() {
 
 
         secundario.central.pares_fibra = pfibras * pPredio;
-        secundario.central.especificacao_fibra = document.getElementById("fibraprimaria").value;
-        var especificacaoTamanhoAcopladores = null
+        secundario.central.especificacao_fibra = document.getElementById("fibrasecundaria").value;
+        var especificacaoTamanhoAcopladores = "";
         if (primario.especificacao_fibra == 'monomodo')
-            especificacaoTamanhoAcopladores = + " 9 X 125µm"
+            especificacaoTamanhoAcopladores =  " 9 X 125µm";
         else if (primario.especificacao_fibra == 'multimodo50')
-            especificacaoTamanhoAcopladores = + " 50 X 125µm"
+            especificacaoTamanhoAcopladores =  " 50 X 125µm";
         if (primario.especificacao_fibra == 'multimodo625')
-            especificacaoTamanhoAcopladores = + " 62.5 X 125µm"
+            especificacaoTamanhoAcopladores =  " 62.5 X 125µm";
 
 
         secundario.central.pigtail = pfibras * 2 * pPredio;
