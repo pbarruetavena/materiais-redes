@@ -30,7 +30,7 @@ primario = {
         tubo: null,
     },
     total: {
-
+        
     }
 }
 
@@ -73,14 +73,12 @@ tipoBackbone = null;
 // Função para calcular os materiais
 function calcularMateriais() {
     tipoBackbone = parseInt(document.querySelector("#backbone").value, 10);
-    const containerRes = document.getElementById('container-res');
+    var containerRes = document.getElementById('container-res');
     containerRes.classList.remove('oculto');
 
     // Pegando os valores dos inputs
-    const nPav = document.querySelector("#nPav").value
-    if (nPav != null) {
-        nPav = parseInt(nPav, 10);
-    }
+    const nPavValue = document.querySelector("#nPav").value;
+    const nPav = nPavValue != null ? parseInt(nPavValue, 10) : null;
     const pfibrasValue = document.querySelector("#pfibras").value;
     const pfibras = pfibrasValue != null ? parseInt(pfibrasValue, 10) : null;
     const tPavimentoValue = document.querySelector("#tPavimento").value;
@@ -95,7 +93,7 @@ function calcularMateriais() {
 
         primario.central.pares_fibra = pfibras;
         primario.especificacao_fibra = document.getElementById("fibraprimaria").value;
-        const especificacaoTamanhoAcopladores = null
+        var especificacaoTamanhoAcopladores = null
         if (primario.especificacao_fibra == 'monomodo')
             especificacaoTamanhoAcopladores = + " 9 X 125µm"
         else if (primario.especificacao_fibra == 'multimodo50')
@@ -150,7 +148,7 @@ function calcularMateriais() {
 
         secundario.central.pares_fibra = pfibras * pPredio;
         secundario.central.especificacao_fibra = document.getElementById("fibraprimaria").value;
-        const especificacaoTamanhoAcopladores = null
+        var especificacaoTamanhoAcopladores = null
         if (primario.especificacao_fibra == 'monomodo')
             especificacaoTamanhoAcopladores = + " 9 X 125µm"
         else if (primario.especificacao_fibra == 'multimodo50')
@@ -161,11 +159,11 @@ function calcularMateriais() {
 
         secundario.central.pigtail = pfibras * 2 * pPredio;
         secundario.central.acoplador = (pfibras * 2 * pPredio) / 2;
-        secundario.central.especificacao_acoplador = "Acoplador - LC - Duplo ";
+        secundario.central.especificacao_acoplador = "Acoplador - LC - Duplo " + especificacaoTamanhoAcopladores;
         secundario.central.cordao = (pfibras * 2 * pPredio) / 2;
-        secundario.central.especificacao_cordao = "Cordão Óptico - LC - Duplo - 3m ";
+        secundario.central.especificacao_cordao = "Cordão Óptico - LC - Duplo - 3m " + especificacaoTamanhoAcopladores;
 
-        secundario.central.dio = Math.ceil(pfibras * nPredio / 12);
+        secundario.central.dio = Math.ceil(pfibras * pPredio / 12);
         secundario.central.caixa_emenda = secundario.central.dio * 2;
 
         secundario.central.tubo = Math.ceil(pfibras * 2 * pPredio / 18);
@@ -174,7 +172,7 @@ function calcularMateriais() {
 
 
     calcularTotal(primario);
-    calcularTotal(Secundário);
+    calcularTotal(secundario);
     atualizaResultado();
 }
 
@@ -240,7 +238,7 @@ function atualizarTexto() {
     if (nPav === "1") {
         labelPavimento.textContent = 'Distância do pavimento (em metros):';
     } else {
-        labelPavimento.textContent = 'Altura do pavimento (em metros):';
+        labelPavimento.textContent = 'Altura do pavimento (em metros):' ;
     }
 }
 document.getElementById("nPav").addEventListener("input", atualizarTexto);
