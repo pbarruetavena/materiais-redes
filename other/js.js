@@ -110,17 +110,17 @@ function calcularMateriais() {
         primario.central.dio = Math.ceil(pfibras * nPav / 12);
         primario.central.acoplador = pfibras * nPav;
         if (tipoInput == 'duplo') {
-            primario.central.especificacao_acoplador = "Acoplador Duplo LC " + especificacaoTamanhoAcopladores;
+            primario.central.especificacao_acoplador = "Acoplador Duplo LC - " + especificacaoTamanhoAcopladores;
             primario.central.pigtail = pfibras * nPav;
             primario.central.cordao = pfibras * nPav;
-            primario.central.especificao_pigtail = "Pigtail LC - Duplo - 1m " + especificacaoTamanhoAcopladores;
-            primario.central.especificacao_cordao = "Cordão Óptico - LC - Duplo - 3m " + especificacaoTamanhoAcopladores;
+            primario.central.especificao_pigtail = "Pigtail LC - Duplo - 1m - " + especificacaoTamanhoAcopladores;
+            primario.central.especificacao_cordao = "Cordão Óptico - LC - Duplo - 3m - " + especificacaoTamanhoAcopladores;
         } else {
-            primario.central.especificacao_acoplador = "Acoplador Simples SC " + especificacaoTamanhoAcopladores;
+            primario.central.especificacao_acoplador = "Acoplador Simples SC - " + especificacaoTamanhoAcopladores;
             primario.central.pigtail = pfibras * 2 * nPav;
             primario.central.cordao = pfibras * nPav * 2;
-            primario.central.especificao_pigtail = "Pigtail SC - Simples - 1m " + especificacaoTamanhoAcopladores;
-            primario.central.especificacao_cordao = "Cordão Óptico - SC - Simples - 3m " + especificacaoTamanhoAcopladores;
+            primario.central.especificao_pigtail = "Pigtail SC - Simples - 1m - " + especificacaoTamanhoAcopladores;
+            primario.central.especificacao_cordao = "Cordão Óptico - SC - Simples - 3m - " + especificacaoTamanhoAcopladores;
         }
         primario.central.caixa_emenda = Math.ceil(pfibras * nPav / 12);
         primario.central.tubo = Math.ceil(pfibras * 2 / 18);
@@ -128,13 +128,13 @@ function calcularMateriais() {
         if (pfibras <= 4) {
             primario.periferico.to = 1;
             if (tipoInput == 'duplo') {
-                primario.periferico.especificacao_acoplador = "Acoplador Duplo LC " + especificacaoTamanhoAcopladores;
+                primario.periferico.especificacao_acoplador = "Acoplador Duplo LC - " + especificacaoTamanhoAcopladores;
                 primario.periferico.pigtail = pfibras * nPav;
-                primario.periferico.especificao_pigtail = "Pigtail - LC - Duplo - 1m " + especificacaoTamanhoAcopladores;
+                primario.periferico.especificao_pigtail = "Pigtail - LC - Duplo - 1m - " + especificacaoTamanhoAcopladores;
             } else {
-                primario.periferico.especificacao_acoplador = "Acoplador Simples LC " + especificacaoTamanhoAcopladores;
+                primario.periferico.especificacao_acoplador = "Acoplador Simples LC - " + especificacaoTamanhoAcopladores;
                 primario.periferico.pigtail = pfibras * 2 * nPav;
-                primario.periferico.especificao_pigtail = "Pigtail - SC - Simples - 1m " + especificacaoTamanhoAcopladores;
+                primario.periferico.especificao_pigtail = "Pigtail - SC - Simples - 1m - " + especificacaoTamanhoAcopladores;
             }
             primario.periferico.tubo = Math.ceil(pfibras * 2 / 18);
             primario.periferico.cordao = 0;
@@ -143,17 +143,17 @@ function calcularMateriais() {
         } else {
             primario.periferico.dio = Math.ceil(pfibras * nPav / 12);
             if (tipoInput == 'duplo') {
-                primario.periferico.especificacao_acoplador = "Acoplador Duplo LC " + especificacaoTamanhoAcopladores;
+                primario.periferico.especificacao_acoplador = "Acoplador Duplo LC - " + especificacaoTamanhoAcopladores;
                 primario.periferico.pigtail = pfibras * nPav;
                 primario.periferico.cordao = pfibras * nPav;
-                primario.periferico.especificao_pigtail = "Pigtail LC - Duplo - 1m " + especificacaoTamanhoAcopladores;
-                primario.periferico.especificacao_cordao = "Cordão Óptico - LC - Duplo - 3m " + especificacaoTamanhoAcopladores;
+                primario.periferico.especificao_pigtail = "Pigtail LC - Duplo - 1m - " + especificacaoTamanhoAcopladores;
+                primario.periferico.especificacao_cordao = "Cordão Óptico - LC - Duplo - 3m - " + especificacaoTamanhoAcopladores;
             } else {
-                primario.periferico.especificacao_acoplador = "Acoplador Simples SC " + especificacaoTamanhoAcopladores;
+                primario.periferico.especificacao_acoplador = "Acoplador Simples SC - " + especificacaoTamanhoAcopladores;
                 primario.periferico.pigtail = pfibras * 2 * nPav;
                 primario.periferico.cordao = pfibras * nPav * 2;
-                primario.periferico.especificao_pigtail = "Pigtail SC - Simples - 1m " + especificacaoTamanhoAcopladores;
-                primario.periferico.especificacao_cordao = "Cordão Óptico - SC - Simples - 3m " + especificacaoTamanhoAcopladores;
+                primario.periferico.especificao_pigtail = "Pigtail SC - Simples - 1m - " + especificacaoTamanhoAcopladores;
+                primario.periferico.especificacao_cordao = "Cordão Óptico - SC - Simples - 3m - " + especificacaoTamanhoAcopladores;
             }
             
             primario.periferico.caixa_emenda = Math.ceil(pfibras * nPav / 12);
@@ -169,27 +169,27 @@ function calcularMateriais() {
         secundario.central.pares_fibra = pfibras * pPredio;
         secundario.central.especificacao_fibra = document.getElementById("fibrasecundaria").value;
         var especificacaoTamanhoAcopladores = "";
-        if (secundario.especificacao_fibra == 'monomodo')
+        if (secundario.central.especificacao_fibra == 'monomodo')
             especificacaoTamanhoAcopladores = " 9 X 125µm";
-        else if (secundario.especificacao_fibra == 'multimodo50')
+        else if (secundario.central.especificacao_fibra == 'multimodo50')
             especificacaoTamanhoAcopladores = " 50 X 125µm";
-        if (secundario.especificacao_fibra == 'multimodo625')
+        if (secundario.central.especificacao_fibra == 'multimodo625')
             especificacaoTamanhoAcopladores = " 62.5 X 125µm";
 
         if (tipoInput == 'duplo') {
             secundario.central.pigtail = pfibras * 2 * pPredio;
             secundario.central.acoplador = (pfibras * 2 * pPredio) / 2;
-            secundario.central.especificao_pigtail = "Pigtail - LC - Simples - 1m " + especificacaoTamanhoAcopladores;
-            secundario.central.especificacao_acoplador = "Acoplador - LC - Duplo " + especificacaoTamanhoAcopladores;
+            secundario.central.especificao_pigtail = "Pigtail - LC - Simples - 1m - " + especificacaoTamanhoAcopladores;
+            secundario.central.especificacao_acoplador = "Acoplador - LC - Duplo - " + especificacaoTamanhoAcopladores;
             secundario.central.cordao = (pfibras * pPredio);
-            secundario.central.especificacao_cordao = "Cordão Óptico - LC - Duplo - 3m " + especificacaoTamanhoAcopladores;
+            secundario.central.especificacao_cordao = "Cordão Óptico - LC - Duplo - 3m - " + especificacaoTamanhoAcopladores;
         } else {
             secundario.central.pigtail = pfibras * pPredio;
             secundario.central.acoplador = (pfibras * pPredio);
-            secundario.central.especificao_pigtail = "Pigtail - SC - Simples - 1m " + especificacaoTamanhoAcopladores;
-            secundario.central.especificacao_acoplador = "Acoplador - SC - Simples " + especificacaoTamanhoAcopladores;
+            secundario.central.especificao_pigtail = "Pigtail - SC - Simples - 1m - " + especificacaoTamanhoAcopladores;
+            secundario.central.especificacao_acoplador = "Acoplador - SC - Simples - " + especificacaoTamanhoAcopladores;
             secundario.central.cordao = (pfibras * pPredio);
-            secundario.central.especificacao_cordao = "Cordão Óptico - SC - Simples - 3m " + especificacaoTamanhoAcopladores;
+            secundario.central.especificacao_cordao = "Cordão Óptico - SC - Simples - 3m - " + especificacaoTamanhoAcopladores;
 
         }
         secundario.central.dio = Math.ceil(pfibras * pPredio / 12);
