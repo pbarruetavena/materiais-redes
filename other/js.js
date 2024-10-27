@@ -78,7 +78,7 @@ function calcularMateriais() {
 
     // Pegando os valores dos inputs
     const nPavValue = document.querySelector("#nPav").value;
-    const nPav = nPavValue != null ? parseInt(nPavValue, 10) : null;
+    const nPav = nPavValue != null ? parseInt(nPavValue, 10) - 1 : null;
     const pfibrasValue = document.querySelector("#pfibras").value;
     const pfibras = pfibrasValue != null ? parseInt(pfibrasValue, 10) : null;
     const tPavimentoValue = document.querySelector("#tPavimento").value;
@@ -102,7 +102,7 @@ function calcularMateriais() {
             especificacaoTamanhoAcopladores = " 62.5 X 125µm";
 
         var tamanho = 0;
-        for (var i = 1; i <= nPav; i++) {
+        for (var i = 2; i <= nPav+1; i++) {
             tamanho += (i + 1) * tPavimento;
         }
         primario.tamanho_fibra = tamanho * 1.2;
@@ -209,9 +209,12 @@ document.getElementById('backbone').addEventListener('change', function () {
     if (valor === '2') {
         mostrar(elementosSecundario, true);
         mostrar(elementosPrimario, false);
+        const labelPavimento = document.querySelector('#txtPav');
+        labelPavimento.textContent = 'Distância do pavimento (em metros):';
     } else if (valor === '1') {
         mostrar(elementosPrimario, true);
         mostrar(elementosSecundario, false);
+        atualizarTexto();
     }
 });
 
@@ -235,6 +238,7 @@ function atualizarTexto() {
     const nPav = document.getElementById("nPav").value;
     const labelPavimento = document.querySelector('#txtPav');
 
+    if(nPav == null) {return;}
     if (nPav === "1") {
         labelPavimento.textContent = 'Distância do pavimento (em metros):';
     } else {
